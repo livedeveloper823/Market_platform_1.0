@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import instance from "../utils/axios";
 import { ModalProps } from "../types";
 import { GoogleIcon } from "./icons";
@@ -12,7 +12,7 @@ const SignInModal = ({ isOpen, onClose, title }: ModalProps) => {
 
     const { login, register, isLoggedIn } = useAuth()
 
-    const [userData, setUserData] = useState({
+    const [userData, setUserData] = React.useState({
         firstName: "",
         lastName: "",
         email: "",
@@ -29,13 +29,11 @@ const SignInModal = ({ isOpen, onClose, title }: ModalProps) => {
             if (!isLoggedIn) {
                 login(userData.email, userData.password)
                 showNotification("Successfully logined!", "success")
-
             }
             onClose()
         } else {
             register(userData.email, userData.password, userData.firstName, userData.lastName)
-            // instance.post("/auth/register", userData)
-            //     .then().catch((error) => console.log(error))
+            showNotification("Successfully registered!", "success")
             onClose()
         }
     }

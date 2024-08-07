@@ -41,9 +41,9 @@ export interface UserProfileProps {
     id?: number,
     email?: string,
     avatar?: string,
-    fistName: string,
+    firstName: string,
     lastName: string,
-    password: string,
+    password?: string,
     role?: string,
 }
 export interface AuthProps {

@@ -1,9 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import instance from "../../utils/axios";
+import { dispatch } from "..";
+import { userStateProps } from "../../types/states";
 
-const initialState = {
+const initialState: userStateProps = {
     error: null,
-    user: {},
+    user: {
+        id: 0,
+        firstName: '',
+        lastName: '',
+        email: '',
+    },
     isLoggedIn: false
 }
 
@@ -24,12 +31,12 @@ const userInfo = createSlice({
 export default userInfo.reducer;
 
 // Export the async thunk separately
-export const getUsersData = () => {
-    return async (dispatch: any) => {
+export const getUserData = () => {
+    return async () => {
         try {
             const response = await instance.get("/users/me");
             console.log(response.data.data);
-            dispatch(userInfo.actions.getUserInfo(response.data.data.users));
+            dispatch(userInfo.actions.getUserInfo(response.data.data.user));
         } catch (error) {
             dispatch(userInfo.actions.hasError(error instanceof Error ? error.message : "An error occurred"));
         }

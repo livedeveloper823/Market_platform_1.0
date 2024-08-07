@@ -1,12 +1,17 @@
-import { UserProfileProps } from ".";
+import { EventProps, UserProfileProps } from ".";
 
-export interface userStateProps {
+export interface usersStateProps {
     error: string | null,
     users: UserProfileProps[],
-    isLoggedIn: boolean,
 }
 
-export interface eventsProps {
+export interface eventsStateProps {
     error: string | null,
-    events: eventsProps[]
+    events: EventProps[],
+}
+
+export interface userStateProps{
+    user:UserProfileProps,
+    error: string | null,
+    isLoggedIn: boolean,
 }

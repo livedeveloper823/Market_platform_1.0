@@ -1,12 +1,11 @@
 // usersReducer.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { userStateProps } from "../../types/states";
+import { usersStateProps } from "../../types/states";
 import instance from "../../utils/axios";
 
-const initialState: userStateProps = {
+const initialState: usersStateProps = {
     error: null,
     users: [],
-    isLoggedIn: false,
 };
 
 const users = createSlice({
@@ -18,7 +17,6 @@ const users = createSlice({
         },
         getUserData(state, action: PayloadAction<any[]>) {
             state.users = action.payload;
-            state.isLoggedIn = true;
         },
     },
 });

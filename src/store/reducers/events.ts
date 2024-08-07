@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { eventsProps } from "../../types/states";
+import { eventsStateProps } from "../../types/states";
 import { dispatch } from "..";
 import instance from "../../utils/axios";
 
-const initialState: eventsProps = {
+const initialState: eventsStateProps = {
     error: null,
     events: []
 }

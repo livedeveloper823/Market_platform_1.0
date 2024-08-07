@@ -15,6 +15,7 @@ const auth = (state = initialState, action: AuthActionProps) => {
             const { user } = action.payload!;
             return {
                 ...state,
+                isLoggedIn: true,
                 user
             }
         }
@@ -22,7 +23,7 @@ const auth = (state = initialState, action: AuthActionProps) => {
             const { user } = action.payload!;
             return {
                 ...state,
-                isLoggedIn: true,
+                // isLoggedIn: true,
                 isInitialized: true,
                 user
             }

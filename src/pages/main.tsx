@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Button from "../components/Button";
 import TopEventCard from "../components/cards/TopEventCard";
 import { ListViewIcon, MarketsIcon, SearchIcon, StarIcon } from "../components/icons";
@@ -6,10 +6,10 @@ import Navbar from "../components/Navbar";
 import { content } from "../contents/landing";
 import { getUsersData } from "../store/reducers/users";
 import { dispatch } from "../store";
-import { getAllEvents } from "../store/reducers/event";
+import { getAllEvents } from "../store/reducers/events";
 
 const Main = () => {
-    const [listView, setListView] = useState(false)
+    const [listView, setListView] = React.useState(false)
     
     useEffect(() => {
         dispatch(getUsersData())

@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 // import reducers
 import users from "./users";
-import event from "./event";
+import events from "./events";
 import userInfo from "./userInfo";
 
 const reducers = combineReducers({
     users,
-    event,
+    events,
     userInfo
 });
 
