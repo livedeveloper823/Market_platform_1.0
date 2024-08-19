@@ -7,7 +7,7 @@ import { LOGIN, LOGOUT } from "../store/reducers/action";
 import authReducer from '../store/reducers/auth';
 
 import instance from "../utils/axios";
-import { AuthProps, JWTContextType, KeyedObject } from "../types";
+import { AuthProps, JWTContextType } from "../types";
 import { createContext, useEffect, useReducer } from 'react';
 
 
@@ -19,16 +19,22 @@ const initialState: AuthProps = {
     isInitialized: false,
     user: null
 };
-
-const verifyToken: (st: string) => boolean = (token) => {
-    if (!token) {
-        return false
-    }
-    const decoded: KeyedObject = jwtDecode(token);
-
-    return decoded.exp > Date.now() / 1000;
+interface DecodedToken {
+    exp: number;
 }
 
+const verifyToken = (token: string): boolean => {
+    if (!token) {
+        return false;
+    }
+    try {
+        const decoded = jwtDecode < DecodedToken > (token);
+        return decoded.exp > Date.now() / 1000;
+    } catch (error) {
+        console.error("Invalid token", error);
+        return false;
+    }
+};
 
 const setSession = (token?: string | null) => {
     if (token) {
@@ -42,7 +48,7 @@ const setSession = (token?: string | null) => {
 
 // ==============================|| JWT CONTEXT & PROVIDER ||============================== //
 
-const JWTContext = createContext<JWTContextType | null>(null);
+const JWTContext = createContext < JWTContextType | null > (null);
 
 export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     const [state, dispatch] = useReducer(authReducer, initialState)
@@ -78,7 +84,9 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         init();
     }, []);
     const login = async (email: string, password: string) => {
+
         const response = await instance.post('/auth/login', { email, password });
+        console.log("========>", response.data)
         const { token, user } = response.data;
         setSession(token);
         dispatch({
@@ -90,14 +98,14 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         });
     };
 
-    const register = async (email: string, password: string, firstName: string, lastName: string) => {
+    const register = async (email: string, password: string, username: string) => {
         const id = chance.bb_pin();
+
         const response = await instance.post('/auth/register', {
             id,
             email,
             password,
-            firstName,
-            lastName
+            username,
         });
         let users = response.data;
 
@@ -109,7 +117,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
                     id,
                     email,
                     password,
-                    name: `${firstName} ${lastName}`
+                    name: `${username} `
                 }
             ];
         }
@@ -122,17 +130,22 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         dispatch({ type: LOGOUT });
     };
 
-    const resetPassword = async (email: string) => {
-        console.log(email);
-    };
+    // const resetPassword = async (email: string) => { };
 
-    const updateProfile = () => { };
+    // const updateProfile = async (email: string, password: string, username: string) => {
+    //     const response = await instance.post('/auth/register', {
+    //         email,
+    //         password,
+    //         username,
+    //     });
+    //     alert(response)
+    // };
 
     //   if (state.isInitialized !== undefined && !state.isInitialized) {
     //     return <Loader />;
     //   }
 
-    return <JWTContext.Provider value={{ ...state, login, logout, register, resetPassword, updateProfile }}>{children}</JWTContext.Provider>;
+    return <JWTContext.Provider value={{ ...state, login, logout, register }}>{children}</JWTContext.Provider>;
 }
 
 export default JWTContext;

@@ -17,11 +17,13 @@ const events = createSlice({
         },
         getEventsData(state, action) {
             state.events = action.payload
+        },
+        addEventData(state, action) {
+            state.events = action.payload
         }
     }
 })
 
-export default events.reducer;
 
 export const getAllEvents = () => {
     return async () => {
@@ -33,3 +35,16 @@ export const getAllEvents = () => {
         }
     }
 }
+
+export const addEvent = ( ) => {
+    return async () => {
+        try {
+            console.log("====>>>>")
+            const response = await instance.post("/events/add")
+            dispatch(events.actions.addEventData(response.data.data.eventData))
+        } catch (error) {
+            dispatch(events.actions.hasError(error))
+        }
+    }
+}
+export default events.reducer;

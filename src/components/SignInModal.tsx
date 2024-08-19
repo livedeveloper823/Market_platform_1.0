@@ -1,20 +1,20 @@
 import React from "react";
+import { Button } from "@material-tailwind/react";
 import instance from "../utils/axios";
 import { ModalProps } from "../types";
 import { GoogleIcon } from "./icons";
 import useAuth from "../hooks/useAuth";
 import useNotification from "../hooks/useNotification";
-
-
+// import { useNavigate } from "react-router-dom";
 
 const SignInModal = ({ isOpen, onClose, title }: ModalProps) => {
     const { showNotification } = useNotification()
+    // const { navigate } =useNavigate()
 
     const { login, register, isLoggedIn } = useAuth()
 
     const [userData, setUserData] = React.useState({
-        firstName: "",
-        lastName: "",
+        username: "",
         email: "",
         password: ""
     })
@@ -32,15 +32,18 @@ const SignInModal = ({ isOpen, onClose, title }: ModalProps) => {
             }
             onClose()
         } else {
-            register(userData.email, userData.password, userData.firstName, userData.lastName)
+            console.log(userData)
+            register(userData.email, userData.password, userData.username)
             showNotification("Successfully registered!", "success")
             onClose()
         }
     }
+
     const googleSignIn = () => {
         instance.get("/auth/google")
         onClose()
     }
+
     return (
         <div
             onClick={onClose}
@@ -68,9 +71,9 @@ const SignInModal = ({ isOpen, onClose, title }: ModalProps) => {
                     boxShadow: "2px solid black",
                 }}
             >
-                <div className="flex flex-col gap-3 ">
-                    <p className="text-center text-3xl font-bold">{title}</p>
-                    <div className="cursor-pointer flex flex-row mt-5 bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg w-[100%] h-[80px]" onClick={() => googleSignIn()}>
+                <div className="flex flex-col gap-2 ">
+                    <p className="text-center text-2xl font-bold">{title}</p>
+                    <div className="cursor-pointer flex flex-row   bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg w-[100%] h-[80px]" onClick={() => googleSignIn()}>
                         <div className="flex items-center justify-center ml-2 my-auto w-[50px] h-[50px] bg-white rounded-lg">
                             <GoogleIcon />
                         </div>
@@ -79,22 +82,35 @@ const SignInModal = ({ isOpen, onClose, title }: ModalProps) => {
                             <p className="text-white text-sm">Quick Sign-in</p>
                         </div>
                     </div>
-                    <div className="flex flex-row mt-2">
-                        <input type="email" className="py-2 pl-3 border border-gray-300 rounded-lg w-[70%] bg-white " placeholder="Email address" onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
-                        <div className="ml-2 font-bold text-black bg-gray-200 w-[30%] rounded-lg text-1xl flex items-center justify-center cursor-pointer hover:bg-green-500" onClick={() => handleClick()}>Continue</div>
-                    </div>
                     {title === "Sign Up" ?
                         <div className="flex flex-col gap-3 justify-between">
+                            <div className="flex flex-row mt-2">
+                                <input type="email" name="email" className="py-2 pl-3 border border-gray-300 rounded-lg w-[70%] bg-white" autoComplete='email' placeholder="User Name" onChange={(e) => setUserData({ ...userData, username: e.target.value })} />
+                                <div className="ml-2 font-bold text-black bg-gray-200 w-[30%] rounded-lg text-1xl flex items-center justify-center cursor-pointer hover:bg-green-500" onClick={() => handleClick()}>Continue</div>
+                            </div>
                             <div className="flex gap-2 flex-row justify-between">
-                                <input type="text" className="w-full pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="First Name" onChange={(e) => setUserData({ ...userData, firstName: e.target.value })} />
-                                <input type="text" className="w-full pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Last Name" onChange={(e) => setUserData({ ...userData, lastName: e.target.value })} />
+                                <input type="text" className="w-full pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Email Name" onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
                             </div>
                             <input type="password" className="pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Password" onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
-                        </div> :
+                        </div>
+                        :
                         <div>
-                            <input type="password" className=" w-full mt-2 pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Password" onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
+                            <div className="flex gap-2 flex-row justify-between">
+                                <input type="text" className="w-full pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Email Name" onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
+                                <div className="ml-2 font-bold text-black bg-gray-200 w-[30%] rounded-lg text-1xl flex items-center justify-center cursor-pointer hover:bg-green-500" onClick={() => handleClick()}>Continue</div>
+                            </div>
+                            <input type="password" className="w-full mt-2 pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Password" onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
                         </div>}
-                    <p className="border-b-2 pb-2 text-center text-1xl mt-5"> Privacy Terms</p>
+                    <hr />
+
+                    <Button style={{ textTransform: 'none' }} className="text-black w-full border justify-start">
+                        MetaMask
+                    </Button>
+
+                    <Button style={{ textTransform: 'none' }} className="text-black w-full border justify-start">
+                        WalletConnect
+                    </Button>
+                    <p className="border-b-2   text-center text-1xl mt-5"> Privacy Terms</p>
                 </div>
             </div>
         </div>

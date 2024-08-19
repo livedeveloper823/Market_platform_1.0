@@ -1,5 +1,5 @@
 // import { Outlet } from "react-router";
-import MainPage from "../pages/main";
+import MainPage from "../pages/market";
 
 const MainLayout = () => {
     return (

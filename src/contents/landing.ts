@@ -5,24 +5,29 @@ export const content = {
         {
             text: "Markets",
             value: "markets",
-            icon: MarketsIcon
+            icon: MarketsIcon,
+            link: 'markets'
         },
         {
             text: "Election",
             value: "election",
-            icon: FlagIcon
+            icon: FlagIcon,
+            link: 'election'
         },
         {
             text: "Activity",
             value: "activity",
-            icon: ActivityIcon
+            icon: ActivityIcon,
+            link: 'activity'
         },
         {
             text: "Ranks",
             value: "Ranks",
-            icon: RankIcon
+            icon: RankIcon,
+            link: 'leaderboard'
         }
     ],
+  
     menuBtns: [
         {
             text: "All",
@@ -61,6 +66,7 @@ export const content = {
             value: "science"
         }
     ],
+
     filterBtns: {
         all: [
             {
