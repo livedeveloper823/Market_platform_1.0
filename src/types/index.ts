@@ -1,7 +1,12 @@
+import { ReactNode } from "react";
 
 export type KeyedObject = {
-    [key: string]: string | number | KeyedObject | any;
+    [key: string]: string | number | KeyedObject;
 };
+export interface TabProps {
+    title: string;
+    content: string;
+}
 
 export interface IconProps {
     className?: string;
@@ -20,6 +25,12 @@ export interface TopEventCardProps {
     onClick: () => void,
     img_url?: string,
     className?: string,
+}
+export interface MyPropertyProps {
+    className: string,
+    text: string,
+    icon: ReactNode,
+    value: number,
 }
 
 export interface SubContentProps {
@@ -41,8 +52,7 @@ export interface UserProfileProps {
     id?: number,
     email?: string,
     avatar?: string,
-    firstName: string,
-    lastName: string,
+    username: string,
     password?: string,
     role?: string,
 }
@@ -64,13 +74,14 @@ export type JWTContextType = {
     user?: UserProfileProps | null | undefined;
     logout: () => void;
     login: (email: string, password: string) => Promise<void>;
-    register: (email: string, password: string, firstName: string, lastName: string) => Promise<void>;
-    resetPassword: (email: string) => Promise<void>;
-    updateProfile: VoidFunction;
+    register: (email: string, password: string, username: string,) => Promise<void>;
+ 
+    // addEvent: ();
+    resetPassword?: (email: string) => Promise<void>;
+    updateProfile?: VoidFunction;
 };
 
 //   Notification context
 export interface NotificationContextValue {
     showNotification: (msg: string, type: "success" | "error" | "info" | "warning") => void;
 }
-

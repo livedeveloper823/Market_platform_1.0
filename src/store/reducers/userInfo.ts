@@ -7,8 +7,7 @@ const initialState: userStateProps = {
     error: null,
     user: {
         id: 0,
-        firstName: '',
-        lastName: '',
+        username: '', 
         email: '',
     },
     isLoggedIn: false
@@ -35,7 +34,7 @@ export const getUserData = () => {
     return async () => {
         try {
             const response = await instance.get("/users/me");
-            console.log(response.data.data);
+            console.log('====>', response.data.data);
             dispatch(userInfo.actions.getUserInfo(response.data.data.user));
         } catch (error) {
             dispatch(userInfo.actions.hasError(error instanceof Error ? error.message : "An error occurred"));
