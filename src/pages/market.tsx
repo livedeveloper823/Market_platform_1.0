@@ -97,10 +97,10 @@ const Markets = () => {
                                     {isDropdownOpen ? <ChevronUp /> : <ChevronDown />}
                                 </div>
                                 {isOpen && (
-                                    <div className="absolute z-10 w-full rounded-md  bg-gray-100 ">
+                                    <div className="absolute z-10 w-full rounded-md  bg-white">
                                         {options.map((option) => (
-                                            <div key={option.value} className="flex px-2 py-2 gap-2 items-center cursor-pointer" onClick={() => handleOptionClick(option)}>
-                                                <p className="bg-blue-100 p-1 rounded-md">{option.icon}</p>
+                                            <div key={option.value} className="flex p-2 gap-2 items-center cursor-pointer" onClick={() => handleOptionClick(option)}>
+                                                <p className="bg-blue-50 p-1 rounded-md">{option.icon}</p>
                                                 {option.label}
                                             </div>
                                         ))}

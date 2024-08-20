@@ -10,14 +10,13 @@ import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import MarketNavbar from "./MarketNavbar";
 import Logo from "./Logo";
-import instance from "../utils/axios";
-import { useMetamask } from "../contexts/useMetamask";
+import { useSDK } from "@metamask/sdk-react";
 
 const TopNavbar = () => {
 
   const [isMarketOpen, setIsMarketOpen] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [selectCategory, setSelectedButton] = React.useState < string > ('');
+  const [selectCategory, setSelectedButton] = React.useState<string>('');
 
   const toggleMarket = () => {
     setIsMarketOpen(!isMarketOpen);
@@ -59,35 +58,24 @@ const TopNavbar = () => {
     dispatch(getUserData())
   }, [])
 
-  const { isMetamaskConnected, connectToMetamask } = useMetamask()
+  const [account, setAccount] = React.useState<string>();
+  const { sdk, connected, connecting, provider, chainId } = useSDK();
+  console.log(account);
 
-  const connectWithMetamask = async () => {
-    // if user is not already connected, force them to connect their wallet
-    if (!isMetamaskConnected) return connectToMetamask()
 
-    const ethereum = window.ethereum;
-    const selectedAddress = ethereum?.selectedAddress
-    console.log(selectedAddress);
-
-    // request to nonce endpoint to get a random nonce
-    const { data: { nonce } } = await instance.get(`/auth/metamask/nonce?address=${selectedAddress}`)
-    // sign the nonce with the selected public address of the connected wallet
-    const signature = await ethereum?.request({
-      method: 'personal_sign',
-      params: [nonce, selectedAddress]
-    })
-
-    // send another request to login endpoint with the signature which is signed with the user's nonce
-    await instance.post(`/auth/metamask/login?address=${selectedAddress}`, { signature })
-
-    // you can return an access token for the user, or maybe temporary credentials and then sign in, it's up to you
-    // ...
-  }
+  const connect = async () => {
+    try {
+      const accounts = await sdk?.connect();
+      setAccount(accounts?.[0]);
+    } catch (err) {
+      console.warn("failed to connect..", err);
+    }
+  };
 
   return (
     <div className="fixed w-full z-30  bg-white top-0">
       <div className=" flex justify-between gap-2 items-center px-2 py-2">
-        <SignInModal isOpen={inOpen} onClose={handleInClick} title="Sign In" connect={connectWithMetamask} />
+        <SignInModal isOpen={inOpen} onClose={handleInClick} title="Sign In" connect={connect} />
         <SignInModal isOpen={upOpen} onClose={handleUpClick} title="Sign Up" />
 
         <div className="flex md:gap-20 w-full justify-between items-center ">
@@ -103,7 +91,7 @@ const TopNavbar = () => {
 
         <div className="flex items-center">
           <div className="lg:visible lg:flex sm:hidden items-center hidden  ">
-          
+
             <div className="relative"
               onMouseEnter={toggleMarket}
               onMouseLeave={toggleMarket}>
@@ -194,7 +182,7 @@ const TopNavbar = () => {
               <div className="flex gap-1 items-center">
                 <Button onClick={handleInClick} className="w-full font-medium cursor-pointer rounded-md px-4 py-2 hover:bg-gray-200 items-centers flex tems-centertext-base  bg-gray-50 text-nowrap" text="Log In" />
                 <Button onClick={handleUpClick} className="w-full font-medium cursor-pointer rounded-md px-4 py-2 hover:bg-gray-200 items-centers text-base bg-blue-700 text-nowrap text-white" text="Sign Up" />
- 
+
                 <div className="relative"
                   onMouseEnter={toggleMenu}
                   onMouseLeave={toggleMenu}>
