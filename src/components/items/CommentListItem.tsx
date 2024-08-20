@@ -44,10 +44,10 @@ const CommentListItem = () => {
                 </Button>
             </div>
             <div className="flex bg-gray-200 border-2 items-center text-lg font-semibold gap-2 rounded-full py-3 justify-center">
-                <Typography className="flex text-black items-center gap-2 cursor-text">
+                <div className="flex text-black items-center gap-2 cursor-text">
                     <Shield />
                     <p className="text-base font-semibold text-black">Beware of external links, they may be phishing attacks.</p>
-                </Typography>
+                </div>
             </div>
 
             <div className="flex items-center gap-2 ">
@@ -100,10 +100,10 @@ const CommentListItem = () => {
                                 </div>
                                 <div className=" ">
                                     <div className="flex py-1 justify-between">
-                                        <Typography className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/profile')}>
+                                        <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/profile')}>
                                             <UserProperty avatar={avatar} username={username} address={address} position={position} volume={volume} />
                                             <p className="text-gray-600 text-sm">2mo ago</p>
-                                        </Typography>
+                                        </div>
 
                                         <Ellipsis className='cursor-pointer text-black bg-gray-100' onClick={() => { alert('Login') }} />
                                     </div>

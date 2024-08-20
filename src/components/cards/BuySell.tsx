@@ -33,12 +33,12 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
                         placement="bottom"
                         content={
                             <div className="w-56 z-10">
-                                <Typography className="font-medium">
+                                <div className="font-medium">
                                     What do the prices mean?
                                     <div className="text-sm font-normal opacity-85">
                                         Prices reflect odds of {"yesNumber"}% Yes and {"noNumber"}% No. When it ends, the correct outcome will be $1 and incorrect $0.
                                     </div>
-                                </Typography>
+                                </div>
                                 <Typography className="font-medium">
                                     Why don't they add up to 100?
                                     <span className="text-sm font-normal opacity-85">
@@ -64,7 +64,7 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
                                 <Settings className="cursor-pointer" onClick={() => { setPopOver(false) }} size={20} />
                             </PopoverHandler>
                             <PopoverContent className="items-center gap-4 z-10  ">
-                                <Typography>
+                                <div>
                                     <p className="text-md font-medium py-2">Tania Andrew</p>
                                     <div className="flex justify-between border-none gap-2">
                                         <Button style={{ textTransform: 'none' }} value="market" className={`${orderType === 'market' ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-600'} px-3 py-1 rounded-md`} onClick={() => changeOrderType('market')} >Market</Button>
@@ -74,9 +74,9 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
                                             onClick={() => changeOrderType('amm')} >Amm</Button>
 
                                     </div>
-                                </Typography>
+                                </div>
 
-                                <Typography>
+                                <div>
                                     <p className="flex text-md gap-1 items-center font-medium py-2">Slippage tolerance
                                         <Tooltip placement="bottom" className=" z-10" content={
                                             <div className="w-[12vw]">
@@ -102,7 +102,7 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
                                         </div>
 
                                     </div>
-                                </Typography>
+                                </div>
 
                             </PopoverContent>
                         </Popover>

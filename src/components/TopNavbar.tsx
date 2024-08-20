@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Switch, Menu, MenuHandler, MenuList, Typography } from '@material-tailwind/react';
+import { Button, Menu, MenuHandler, MenuList, Typography } from '@material-tailwind/react';
 import { Activity, Bell, AlignJustify, Flag, Trophy, } from "lucide-react";
 import { MarketsIcon } from "../components/icons";
 import { content } from "../contents/landing";
@@ -11,6 +11,10 @@ import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import MarketNavbar from "./MarketNavbar";
 import Logo from "./Logo";
+import instance from "../utils/axios";
+// import { useSDK } from "@metamask/sdk-react";
+import { useMetamask } from "../contexts/useMetamask";
+import Switch from "./switch/switch";
 
 const TopNavbar = () => {
 
@@ -48,10 +52,50 @@ const TopNavbar = () => {
     dispatch(getUserData())
   }, [])
 
+
+  const { isMetamaskConnected, connectToMetamask } = useMetamask()
+
+  const connectWithMetamask = async () => {
+    // if user is not already connected, force them to connect their wallet
+    if (!isMetamaskConnected) return connectToMetamask()
+
+    const ethereum = window.ethereum;
+    const selectedAddress = ethereum?.selectedAddress
+    console.log(selectedAddress);
+
+    // request to nonce endpoint to get a random nonce
+    const { data: { nonce } } = await instance.get(`/auth/metamask/nonce?address=${selectedAddress}`)
+    // sign the nonce with the selected public address of the connected wallet
+    const signature = await ethereum?.request({
+      method: 'personal_sign',
+      params: [nonce, selectedAddress]
+    })
+
+    // send another request to login endpoint with the signature which is signed with the user's nonce
+    await instance.post(`/auth/metamask/login?address=${selectedAddress}`, { signature })
+
+    // you can return an access token for the user, or maybe temporary credentials and then sign in, it's up to you
+    // ...
+  }
+
+  // const [account, setAccount] = React.useState<string>();
+
+  // const { sdk } = useSDK();
+
+  // const connect = async () => {
+  //   try {
+  //     const accounts = await sdk?.connect();
+  //     console.log(accounts);
+  //     setAccount(accounts?.[0]);
+  //   } catch (err) {
+  //     console.warn("failed to connect..", err);
+  //   }
+  // };
+
   return (
     <div className="">
       <div className="flex justify-between gap-2 items-center px-2 py-2">
-        <SignInModal isOpen={inOpen} onClose={handleInClick} title="Sign In" />
+        <SignInModal isOpen={inOpen} onClose={handleInClick} title="Sign In" connect={connectWithMetamask} />
         <SignInModal isOpen={upOpen} onClose={handleUpClick} title="Sign Up" />
 
         <div className="flex md:gap-20 w-full justify-between items-center ">
@@ -142,7 +186,7 @@ const TopNavbar = () => {
                 >
                   <MenuHandler>
                     <Button style={{ textTransform: "none" }} className="w-14 hidden lg:flex outline-none border-gray-300 p-2 rounded-full  items-center text-gray-400 hover:text-black  hover:bg-gray-300" onClick={() => { navigate('/leaderboard') }}>
-                      <img className=" rounded-full" src="https://docs.material-tailwind.com/img/face-2.jpg" alt="" /> 
+                      <img className=" rounded-full" src="https://docs.material-tailwind.com/img/face-2.jpg" alt="" />
                     </Button>
                   </MenuHandler>
                   <MenuList className="-w-14 hidden max-w-screen-xl rounded-xl lg:block outline-none">
@@ -170,13 +214,11 @@ const TopNavbar = () => {
                     <Button onClick={() => navigate("/learn")} style={{ textTransform: "none" }} className="w-full font-medium flex gap-3 px-2 items-center outline-none shadow-none text-nowrap">Learn</Button>
                     <Button onClick={() => navigate("/docs")} style={{ textTransform: "none" }} className="w-full font-medium flex gap-3 px-2 items-center outline-none shadow-none text-nowrap">Documentation</Button>
                     <div className="flex items-center">
-                      <Switch
-                        containerProps={{ className: "mr-2" }}
-                      />
+                      {/* <Switch /> */}
                       <div>
-                        <Typography color="blue-gray" className="font-medium text-nowrap text-sm">
+                        <p className="font-medium text-nowrap text-sm">
                           Dark Mode
-                        </Typography>
+                        </p>
                       </div>
                     </div>
                     <Button onClick={() => handleLogout()} style={{ textTransform: "none" }} className="w-full font-medium flex gap-3 px-2 items-center outline-none shadow-none text-nowrap">Logout</Button>
@@ -216,13 +258,10 @@ const TopNavbar = () => {
                       <Button onClick={() => navigate("/docs")} style={{ textTransform: "none" }} className="w-full font-medium flex gap-3 px-2 items-center outline-none shadow-none text-nowrap">Documentation</Button>
 
                       <div className="flex items-center">
-                        <Switch className="outline-none"
-                          containerProps={{ className: "mr-2" }}
-                        />
                         <div>
-                          <Typography color="blue-gray" className="font-medium text-nowrap text-sm">
+                          <p className="font-medium text-nowrap text-sm">
                             Dark Mode
-                          </Typography>
+                          </p>
                         </div>
                       </div>
                     </MenuList>
