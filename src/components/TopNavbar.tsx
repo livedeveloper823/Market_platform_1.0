@@ -61,7 +61,7 @@ const TopNavbar = () => {
 
   const [account, setAccount] = React.useState<string>();
   const { sdk, connected, connecting, provider, chainId } = useSDK();
-  console.log(account);
+  console.log(account, connected, connecting, provider, chainId);
 
 
   const connect = async () => {
