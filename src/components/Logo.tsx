@@ -7,7 +7,7 @@ interface ColorProps{
 const Logo:React.FC<ColorProps> = ({color}) => {
  
     return (
-        <div className="flex items-center" >
+        <div className="flex items-center gap-2" >
             <img src={logo} width={60} alt="logo" />
             <p className={`font-bold text-3xl ${color}`}>Oráculo</p>
         </div>

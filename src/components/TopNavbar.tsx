@@ -12,6 +12,7 @@ import MarketNavbar from "./MarketNavbar";
 import Logo from "./Logo";
 import { useSDK } from "@metamask/sdk-react";
 
+
 const TopNavbar = () => {
 
   const [isMarketOpen, setIsMarketOpen] = React.useState(false);
@@ -78,7 +79,7 @@ const TopNavbar = () => {
         <SignInModal isOpen={inOpen} onClose={handleInClick} title="Sign In" connect={connect} />
         <SignInModal isOpen={upOpen} onClose={handleUpClick} title="Sign Up" />
 
-        <div className="flex md:gap-20 w-full justify-between items-center ">
+        <div className="flex md:gap-16 w-full justify-between items-center ">
           <div className="cursor-pointer" onClick={() => navigate('/')}>
             <Logo color="text-fuchsia-900" />
           </div>
