@@ -1,9 +1,8 @@
 import React from "react";
+import Button from "../Button/Button";
 // import { ActivityListItemProps } from "../../types/rank"; // Make sure this path is correct
-import { Card, Button, CardBody, Typography, Avatar } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import { customers } from "../database";
-// Define the ActivityList component
 
 const RelatedListItem: React.FC = () => {
     const navigate = useNavigate();
@@ -12,36 +11,48 @@ const RelatedListItem: React.FC = () => {
         setConvertBgColor(!convertBgColor);
     }
     return (
-        <Card className="md:px-2 sm:px-4 lg:px-6 flex gap-4 border-b-2 border-gray-100">
-            <CardBody>
+        <div className="md:px-2 sm:px-4 flex gap-4 border-b-2 w-full border-gray-100">
+            <div className="w-full">
                 <div className="divide-y divide-gray-200">
                     {customers.map(({ eventName, avatar, yes, no }, index) => (
                         <div
                             key={index}
-                            className="flex hover:bg-gray-200 hover:rounded-md items-center justify-between pb-3 pt-3 last:pb-0"
+                            className="flex px-1 hover:bg-gray-200 hover:rounded-md items-center w-full justify-between pb-3 pt-3 last:pb-0"
                         >
-                            <div className="flex items-center gap-x-3">
-                                <Avatar size="md" src={avatar} alt={eventName} variant="rounded" />
+                            <div className="flex items-center gap-3 ">
+                                <img width={44} className="rounded-md" src={avatar} alt={eventName} />
                                 <div>
-                                    {eventName &&
-                                        <Typography className="cursor-pointer" onClick={() => navigate('/event')}>
+                                    {eventName && (
+                                        <button
+                                            className="cursor-pointer"
+                                            onClick={() => navigate('/event')}
+                                            aria-label={`Navigate to event: ${eventName}`}
+                                        >
                                             {eventName}
-                                        </Typography>
-                                    }
-                                    <Typography className="text-sm items-center flex gap-1">
-                                        <p className="font-semibold">$124,937 Bet</p>
-                                    </Typography>
+                                        </button>
+                                    )}
+                                    <p className="text-sm font-semibold">$124,937 Bet</p>
                                 </div>
                             </div>
-                            <Typography className="flex gap-4 text-md font-semibold">
-                                <Button style={{ textTransform: "none" }} onClick={() => { convertColor(); }} className=" rounded-lg bg-green-100 text-green-800 px-2"  >{yes} ¢</Button>
-                                <Button style={{ textTransform: "none" }} onClick={() => { convertColor(); }} className=" rounded-lg bg-orange-200 text-orange-600 px-2 "  >{no}¢</Button>
-                            </Typography>
+                            <div className="flex gap-4 text-md font-semibold">
+                                <Button
+                                    onClick={() => convertColor()}
+                                    className="rounded-lg bg-green-100 text-green-800 px-2"
+                                    text={yes}
+                                    aria-label={`Yes: ${yes}`}
+                                />
+                                <Button
+                                    onClick={() => convertColor()}
+                                    className="rounded-lg bg-orange-200 text-orange-600 px-2"
+                                    text={no}
+                                    aria-label={`No: ${no}`}
+                                />
+                            </div>
                         </div>
                     ))}
                 </div>
-            </CardBody >
-        </Card >
+            </div>
+        </div>
     );
 };
 

@@ -1,7 +1,7 @@
 
 import React, { ChangeEvent } from "react";
+import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
 import { CircleX } from "lucide-react";
 import SignInModal from "../SignInModal";
 
@@ -50,17 +50,15 @@ const Betting: React.FC<BettingProps> = ({ isOpen, onClose, which, img, text }) 
                         onChange={handleInputChange}
                     />
                     <div className="gap-1 items-center flex">
-                        <Button style={{ fontSize: '16px' }}
+                        <Button text={+1}
                             className="text-lg font-medium text-gray-400 px-2 py-0 bg-gray-200 rounded-md cursor-pointer"
                             onClick={() => setBetPrice(prevNumber => Math.max(prevNumber + 1, 0))}
-                        >+1
-                        </Button>
+                        />
 
-                        <Button style={{ fontSize: '16px' }}
+                        <Button text={+10}
                             className="text-lg font-medium text-gray-400 px-1 py-0 bg-gray-200 rounded-md cursor-pointer"
                             onClick={() => setBetPrice(prevNumber => Math.max(prevNumber + 10, 0))}
-                        >+10
-                        </Button>
+                        />
                     </div>
                 </div>
                 <div className="w-full">
@@ -77,23 +75,23 @@ const Betting: React.FC<BettingProps> = ({ isOpen, onClose, which, img, text }) 
             </div>
             <div className=" flex h-[12px] justify-between  text-gray-400 items-center">
                 {which === 'yes' &&
-                    <Button style={{ fontSize: '16px', textTransform: 'none' }}
-                        className="z-50 text-lg w-full font-medium px-1 py-0.5 rounded-md cursor-pointer  bg-green-600 hover:bg-green-600 text-white "
+                    <div
+                        className="z-50 text-lg w-full text-center font-medium px-1 py-0.5 rounded-md cursor-pointer  bg-green-600 hover:bg-green-600 text-white "
                         onClick={handleInClick}
                     >
                         <p className="">Bet Yes</p>
                         <p className="text-sm">To win ${betPrice}</p>
-                    </Button>
+                    </div>
                 }
 
                 {which === 'No' &&
-                    <Button style={{ fontSize: '16px', textTransform: 'none' }}
-                        className="z-50 text-lg w-full font-medium px-1 py-0.5 rounded-md cursor-pointer  bg-orange-500  hover:bg-orange-600 text-white "
+                    <div
+                        className="z-50 text-lg w-full text-center font-medium px-1 py-0.5 rounded-md cursor-pointer  bg-orange-500  hover:bg-orange-600 text-white "
                         onClick={handleInClick}
                     >
                         <p className="">Bet No</p>
                         <p className="text-sm">To win ${betPrice}</p>
-                    </Button>
+                    </div>
                 }
             </div>
         </div>

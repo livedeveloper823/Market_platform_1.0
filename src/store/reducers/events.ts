@@ -27,24 +27,25 @@ const events = createSlice({
 
 export const getAllEvents = () => {
     return async () => {
-        try{
-            const response = await instance.get("/events/all")            
-            dispatch(events.actions.getEventsData(response.data.data.events))
-        } catch(error){
-            dispatch(events.actions.hasError(error))
-        }
-    }
-}
-
-export const addEvent = ( ) => {
-    return async () => {
         try {
-            console.log("====>>>>")
-            const response = await instance.post("/events/add")
-            dispatch(events.actions.addEventData(response.data.data.eventData))
+            const response = await instance.get("/events/all")
+            dispatch(events.actions.getEventsData(response.data.data.events))
         } catch (error) {
             dispatch(events.actions.hasError(error))
         }
     }
 }
+
+export const addEvent = (eventData: { title: string; volume: string; desc: string; startDate: Date; endDate: number; avatar: string; }) => {
+    return async () => {
+        try {
+            const response = await instance.post("/events/add", eventData)
+            dispatch(events.actions.addEventData(response.data.data.eventData))
+            console.log("==55555555555>>>", eventData)
+        } catch (error) {
+            dispatch(events.actions.hasError(error))
+        }
+    }
+}
+
 export default events.reducer;

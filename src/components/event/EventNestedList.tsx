@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@material-tailwind/react"
+import Button from "../Button/Button";
 interface CardProps {
     range: string,
     percentage: string,
@@ -16,19 +16,18 @@ const EventNestedList: React.FC<CardProps> = ({ range, percentage }) => {
                     <div className="flex w-full gap-1 items-center">
                         <Button
                             onClick={() => { }}
-                            style={{ textTransform: 'none' }}
+                            text={isYesHovered ? `${percentage}%` : 'Yes'}
                             onMouseEnter={() => setIsYesHovered(true)}
                             onMouseLeave={() => setIsYesHovered(false)}
-                            className={`w-full border-none text-nowrap items-center px-2 py-1 text-xs bg-green-300 text-green-600`}>
-                            {isYesHovered ? `${percentage}%` : 'Yes'}
-                        </Button>
+                            className={`w-full border-none text-nowrap items-center px-2 py-1 text-xs bg-green-300 text-green-600`}
+                        />
                         <Button
-                            style={{ textTransform: 'none' }}
+
                             onMouseEnter={() => setIsNoHovered(true)}
                             onMouseLeave={() => setIsNoHovered(false)}
-                            className={`w-full border-none text-nowrap items-center px-2 py-1 bg-red-300 text-red-600`}>
-                            {isNoHovered ? `${100 - Number(percentage)}%` : 'No'}
-                        </Button>
+                            className={`w-full border-none text-nowrap items-center px-2 py-1 bg-red-300 text-red-600`}
+                            text={isNoHovered ? `${100 - Number(percentage)}%` : 'No'}
+                        />
 
                     </div>
                 </div>

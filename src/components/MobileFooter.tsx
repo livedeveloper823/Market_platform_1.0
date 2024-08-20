@@ -2,8 +2,9 @@ import React from "react";
 import useAuth from "../hooks/useAuth";
 import SignInModal from "./SignInModal";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
+import Button from "./Button/Button";
 import { AlignJustify, Grid3X3, House, Radio, Search, X } from "lucide-react";
+import SocialLink from "./SocialLink";
 
 const MobileFooter = () => {
     const navigate = useNavigate();
@@ -27,12 +28,11 @@ const MobileFooter = () => {
         logout()
     }
     const { isLoggedIn, logout } = useAuth();
- 
+
     const toggleSidebar = () => {
         setIsSidebarOpen((prev) => !prev);
     };
     const handleClickOutside = (event: MouseEvent) => {
-        // Check if the click was outside the dropdown
         if (ref.current && !ref.current.contains(event.target as Node)) {
             setIsSidebarOpen(false);
         }
@@ -46,7 +46,7 @@ const MobileFooter = () => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [])
+    }, []);
     React.useEffect(() => {
         const handleScroll = () => {
             const currentScrollPos = window.scrollY;
@@ -63,54 +63,33 @@ const MobileFooter = () => {
             {/* Sidebar */}
             <SignInModal isOpen={inOpen} onClose={handleInClick} title="Sign In" />
             <SignInModal isOpen={upOpen} onClose={handleUpClick} title="Sign Up" />
+
             <div className={`fixed top-0 left-0 h-full  bg-white  text-black transition-all duration-300 ${isSidebarOpen ? 'w-[80vw]' : 'w-0 overflow-x-hidden'}`} ref={ref}>
-
-                {/* <div className={`fixed top-0 left-0 h-full bg-gray-800 text-white transition-all duration-300 ${isSidebarOpen ? 'w-64' : 'w-0 overflow-hidden'}`}> */}
-
-
                 <div className="mx-8 mt-4" >
                     {isLoggedIn &&
                         <div>
-                            <Button onClick={() => navigate(`/activity`)} style={{ textTransform: 'none' }} className="flex flex-col shadow-none font-medium text-xl p-1 text-black outline-none items-center">
-                                Profile
-                            </Button>
-                            <Button onClick={() => navigate(`/activity`)} style={{ textTransform: 'none' }} className="flex flex-col shadow-none font-medium text-xl p-1 text-black outline-none items-center">
-                                Add fonds
-                            </Button>
+                            <Button text="Profile" onClick={() => navigate(`/activity`)} className="flex font-medium text-xl p-1 text-black   items-center" />
+                            <Button text="Add fonds" onClick={() => navigate(`/activity`)} className="flex font-medium text-xl p-1 text-black   items-center" />
                         </div>
                     }
-                    <Button onClick={() => navigate(`/elections`)} style={{ textTransform: 'none' }} className="flex flex-col shadow-none font-medium text-xl p-1 text-black outline-none items-center">
-                        Election
-                    </Button>
-                    <Button onClick={() => navigate(`/leaderboard`)} style={{ textTransform: 'none' }} className="flex flex-col shadow-none font-medium text-xl p-1 text-black outline-none items-center">
-                        Leadboard
-                    </Button>
-                    <Button onClick={() => navigate(`/activity`)} style={{ textTransform: 'none' }} className="flex flex-col shadow-none font-medium text-xl p-1 text-black outline-none items-center">
-                        Activity
-                    </Button>
-                    <Button onClick={() => navigate(`/`)} style={{ textTransform: 'none' }} className="flex flex-col shadow-none font-medium text-xl p-1 text-black outline-none items-center">
-                        Resources
-                    </Button>
-                    <Button onClick={() => navigate(`/`)} style={{ textTransform: 'none' }} className="flex flex-col shadow-none font-medium text-xl p-1 text-black outline-none items-center">
-                        Rewards
-                    </Button>
+                    <Button text="Election" onClick={() => navigate(`/elections`)} className=" font-medium text-xl p-1 text-black   items-center" />
+                    <Button text="Leadboard" onClick={() => navigate(`/leaderboard`)} className="flex font-medium text-xl p-1 text-black   items-center" />
+                    <Button text="Activity" onClick={() => navigate(`/activity`)} className="flex font-medium text-xl p-1 text-black   items-center" />
+                    <Button text="Resources" onClick={() => navigate(`/`)} className="flex font-medium text-xl p-1 text-black   items-center" />
+                    <Button text="Rewards" onClick={() => navigate(`/`)} className="flex font-medium text-xl p-1 text-black   items-center" />
+
+                    <div>
+                        <SocialLink border={true} />
+                    </div>
                 </div>
                 {!isLoggedIn ?
                     <div className="flex flex-col px-4 gap-2 ">
-                        <Button onClick={handleInClick} style={{ textTransform: 'none' }} className="flex w-full justify-center font-medium text-lg shadow-none outline-none text-black border-gray-300 border bg-white  hover:bg-gray-300">
-                            Log In
-                        </Button>
-                        <Button onClick={handleUpClick} style={{ textTransform: 'none' }} className="flex w-full justify-center font-medium text-lg shadow-none outline-none text-white  bg-blue-600 ">
-                            Sign Up
-                        </Button>
+                        <Button text="Log In" onClick={handleInClick} className="flex w-full justify-center p-3 rounded-lg  font-medium text-lg text-black border-gray-300 border bg-white  hover:bg-gray-300" />
+                        <Button text="Sign Up" onClick={handleUpClick} className="flex w-full justify-center p-3 rounded-lg  font-medium text-lg text-white  bg-blue-600 " />
                     </div>
                     :
                     <div className="flex flex-col mx-4 mt-4 gap-2 ">
-
-                        <Button onClick={handleLogout} style={{ textTransform: 'none' }} className="flex w-full justify-center font-medium text-lg shadow-none outline-none text-black border-gray-300 border bg-white  hover:bg-gray-300">
-                            Log Out
-                        </Button>
-
+                        <Button text="Log Out" onClick={handleLogout} className="flex w-full justify-center p-3 rounded-lg font-medium text-lg text-black border-gray-300 border bg-white  hover:bg-gray-300" />
                     </div>
 
                 }
@@ -118,38 +97,19 @@ const MobileFooter = () => {
             </div>
             {/* Main Footer Buttons */}
             <div className="flex justify-between">
-                <Button onClick={() => navigate(`/`)} style={{ textTransform: 'none' }} className="flex flex-col shadow-none p-1 outline-none items-center text-gray-500 hover:text-black">
-                    <House size={18} />
-                    <p className="text-sm">Home</p>
-                </Button>
-                <Button style={{ textTransform: 'none' }} onClick={() => navigate(`/markets`)} className="flex flex-col text-sm shadow-none p-1 outline-none items-center text-gray-500 hover:text-black">
-                    <Grid3X3 size={18} />
-                    <p className="text-sm">Markets</p>
-                </Button>
-                <Button style={{ textTransform: 'none' }} onClick={() => { }} className="flex flex-col text-sm shadow-none p-1 outline-none items-center text-gray-500 hover:text-black">
-                    <Search size={18} />
-                    <p className="text-sm">Search</p>
-                </Button>
-                <Button onClick={() => navigate(`/activity`)} style={{ textTransform: 'none' }} className="flex flex-col text-sm shadow-none p-1 outline-none items-center text-gray-500 hover:text-black">
-                    <Radio size={18} />
-                    <p className="text-sm">Activity</p>
-                </Button>
-                <Button onClick={toggleSidebar} style={{ textTransform: 'none' }} className="flex flex-col text-sm shadow-none p-1 outline-none items-center text-gray-500 hover:text-black">
-                    {isSidebarOpen ? (
-                        <div className="flex flex-col items-center">
-                            <X size={18} />
-                            <p className="text-sm">Close</p>
-                        </div>
-                    ) : (
-                        <div className="flex flex-col items-center">
-                            <AlignJustify size={18} />
-                            <p className="text-sm">More</p>
-                        </div>
-                    )}
-                </Button>
-            </div>
-        </div>
-    );
+                <Button icon={<House size={18} />} text="Home" onClick={() => navigate(`/`)} className="flex flex-col p-1   items-center text-gray-500 hover:text-black" />
+                <Button icon={<Grid3X3 size={18} />} text="Markets" onClick={() => navigate(`/markets`)} className="flex flex-col p-1   items-center text-gray-500 hover:text-black" />
+                <Button icon={<Search size={18} />} text="Search" onClick={() => navigate(`/`)} className="flex flex-col p-1   items-center text-gray-500 hover:text-black" />
+                <Button icon={<Radio size={18} />} text="Activity" onClick={() => navigate(`/activity`)} className="flex flex-col p-1   items-center text-gray-500 hover:text-black" />
+
+                <Button onClick={toggleSidebar} className="flex flex-col text-sm p-1 items-center text-gray-500 hover:text-black"
+                    text={isSidebarOpen ? "Close" : "More"}
+                    icon={isSidebarOpen ? < X size={18} /> : <AlignJustify size={18} />}
+                />
+
+            </div >
+        </div >
+    )
 };
 
 export default MobileFooter;

@@ -1,9 +1,11 @@
 import React from 'react'
-import { Typography, Textarea, Button, Input } from '@material-tailwind/react'
+import Button from '../../components/Button/Button'
 import { CloudUpload, } from 'lucide-react'
 import TopNavbar from '../../components/TopNavbar'
 import useNotification from '../../hooks/useNotification'
 import { useNavigate } from 'react-router-dom'
+import { dispatch } from '../../store'
+import { addEvent } from '../../store/reducers/events'
 
 const AddEvent = () => {
     const navigate = useNavigate()
@@ -14,28 +16,29 @@ const AddEvent = () => {
         title: "",
         volume: "",
         desc: "",
-        startDate: new Date(), // Initialize as a Date object
-        endDate: 0, // Init
+        startDate: new Date(),
+        endDate: 0,
         avatar: "",
     })
     const handleApplyEvent = () => {
-        if (!eventData.title || !eventData.volume || !eventData.desc || !eventData.avatar) {
+        if (!eventData.title || !eventData.volume || !eventData.desc) {
             showNotification("Incorrect Input Data!", "error")
         } else {
+            dispatch(addEvent(eventData))
             console.log(eventData)
             showNotification("Successfully!", "success")
         }
     }
     return (
-        <div className="">
+        <div className="h-screen overflow-hidden-scrollbar overflow-y-auto">
             <TopNavbar />
-            <div className="flex justify-center">
+            <div className="flex mt-36 justify-center">
                 {/* <div className="lg:px-[18vw] md:px-[6vw] sm:px-8 px-4 w-full  flex-col  border-2 border-red-800 pt-8 pb-4 font-semibold"> */}
                 <div className='   '>
-                    <Typography className='flex pb-1 text-lg font-semibold text-gray-900 '>
+                    <p className='flex pb-1 text-lg font-semibold text-gray-900 '>
                         Event Title
-                    </Typography>
-                    <Input
+                    </p>
+                    <input
                         name="title"
                         type="text"
                         value={eventData.title}
@@ -44,10 +47,10 @@ const AddEvent = () => {
                         className="flex w-full py-2 h-full rounded-md shadow-sm ring-1  ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
                     />
 
-                    <Typography className='flex pb-1 text-lg font-semibold text-gray-900 '>
+                    <p className='flex pb-1 text-lg font-semibold text-gray-900 '>
                         Volume
-                    </Typography>
-                    <Input
+                    </p>
+                    <input
                         name="value"
                         type="number"
                         value={eventData.volume}
@@ -56,10 +59,10 @@ const AddEvent = () => {
                         onChange={(e) => setEventData({ ...eventData, volume: e.target.value })}
                         className="flex w-full py-2 h-full rounded-md shadow-sm ring-1  ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
                     />
-                    <Typography className='flex pb-1 text-lg font-semibold text-gray-900 '>
+                    <p className='flex pb-1 text-lg font-semibold text-gray-900 '>
                         Description
-                    </Typography>
-                    <Textarea
+                    </p>
+                    <textarea
                         name="value"
                         value={eventData.desc}
                         placeholder="Description here ..."
@@ -67,7 +70,7 @@ const AddEvent = () => {
                         className="flex w-full py-2 h-full rounded-md shadow-sm ring-1  ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
                     />
 
-                 
+
                     <label className='flex pb-1 text-lg font-semibold text-gray-900 '>
                         Avatar
                     </label>
@@ -140,8 +143,8 @@ const AddEvent = () => {
             </div >
             <hr />
             <div className='flex justify-center p-3 gap-6 pt-6'>
-                <Button value='eventCancel' className='flex px-3 py-2 bg-gray-300 text-black items-center hover:bg-blue-300 rounded-md' onClick={() => navigate('/admin', { replace: true })}>Cancel</Button>
-                <Button value='eventSave' className='flex px-5 py-2 bg-blue-700 text-white items-center hover:bg-blue-300 rounded-md' onClick={() => handleApplyEvent()} >Apply</Button>
+                <Button text='Cancel' value='eventCancel' className='flex px-3 py-2 bg-gray-300 text-black items-center hover:bg-blue-300 rounded-md' onClick={() => navigate('/admin', { replace: true })} />
+                <Button text='Apply' value='eventSave' className='flex px-5 py-2 bg-blue-700 text-white items-center hover:bg-blue-300 rounded-md' onClick={() => handleApplyEvent()} />
             </div>
         </div >
 

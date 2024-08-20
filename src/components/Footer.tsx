@@ -1,4 +1,5 @@
 import Logo from "./Logo";
+import SocialLink from "./SocialLink";
 
 const Footer = () => {
     return (
@@ -31,9 +32,7 @@ const Footer = () => {
                     </div>
                     <div className="flex flex-col text-1xl gap-2 ml-20">
                         <p className="text-2xl font-bold">Join the community</p>
-                        <div className="flex">
-                            All Icon
-                        </div>
+                        <SocialLink border={false} />
                     </div>
                 </div>
             </div>

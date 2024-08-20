@@ -3,16 +3,14 @@ import CommentListItem from "../items/CommentListItem";
 import ActivityListItem from "../items/ActivityListItem";
 import TopHolderListItem from "../items/TopHolderListItem";
 import RelatedListItem from "../items/RelatedListItem";
+import Button from "../Button/Button";
 
-import {
-    Tabs,
-    TabsHeader,
-    TabsBody,
-    Tab,
-    TabPanel,
-} from "@material-tailwind/react";
 const EventInfoList = () => {
-    const [activeTab, setActiveTab] = React.useState < string > ('comment');
+    const [selectPanel, setSelectPanel] = React.useState < string > ('comment')
+    const handleTabs = (value: string) => {
+        setSelectPanel(value);
+    };
+
     const data = [
         {
             label: "Comments",
@@ -37,34 +35,27 @@ const EventInfoList = () => {
 
     ];
     return (
-        <div>
-            <Tabs value={activeTab}>
-                <TabsHeader
-                    className="w-80 text-nowrap justify-start rounded-none border-b border-gray-300 bg-transparent p-0"
-                    indicatorProps={{
-                        className:
-                            "bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
-                    }}
-                >
-                    {data.map(({ label, value }) => (
-                        <Tab
-                            key={value}
-                            value={value}
-                            onClick={() => setActiveTab(value)}
-                            className={activeTab === value ? "border-b border-blue-700 font-semibold text-lg text-gray-900" : "font-semibold text-lg text-gray-500"}
-                        >
-                            {label}
-                        </Tab>
-                    ))}
-                </TabsHeader>
-                <TabsBody>
-                    {data.map(({ value, desc }) => (
-                        <TabPanel key={value} value={value}>
-                            {desc}
-                        </TabPanel>
-                    ))}
-                </TabsBody>
-            </Tabs>
+        <div className="w-full">
+            <div className="flex">
+                {data.map((item, index) => (
+                    <Button
+                        key={index}
+                        text={item.label}
+                        value={item.value}
+                        onClick={() => { handleTabs(item.value); }}
+                        className={`${selectPanel === `${item.value}` ? 'border-b-2 border-black' : 'border-b-2 border-gray-300'}  flex flex-col  font-medium cursor-pointer p-2  hover:border-b-gray-500  text-black text-nowrap`}
+                    />
+
+                ))}
+            </div>
+
+            {data.map((item) => (
+                selectPanel === item.value && (
+                    <div key={item.value} className="w-full mt-3">
+                        {item.desc}
+                    </div>
+                )
+            ))}
         </div>
     )
 }

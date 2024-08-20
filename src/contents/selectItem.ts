@@ -37,10 +37,7 @@ export const categoryItem = [
         icon: Swords
     },
 ]
-// interface Option {
-//     value: string;
-//     text: string;
-// }
+ 
 export const sortItem = [
     {
         text: "Newest",

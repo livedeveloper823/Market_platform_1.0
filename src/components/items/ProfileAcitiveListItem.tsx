@@ -1,75 +1,82 @@
 import React from "react";
 import Content from "./Content";
-import { Card, Typography } from "@material-tailwind/react";
 import { SquareArrowOutUpRight } from "lucide-react";
-import { activityItem } from "../../contents/profileItem";
+// import { activityItem } from "../../contents/profileItem";
 import { customers } from "../database";
-
-// import { ProfileProps } from "../../types/profile";
+ 
 const ProfileAcitiveListItem: React.FC = () => {
   return (
-    <Card className=" flex w-full ">
-      <table className="w-full min-w-max table-auto text-left">
-        <thead>
-          <tr>
-            {activityItem.map((head) => (
-              <th
-                key={head}
-                className="border-b border-blue-gray-100 bg-blue-gray-50 p-3"
-              >
-                <Typography
-                  color="blue-gray"
-                  className=" text-sm font-normal leading-none opacity-70 uppercase"
-                >
-                  {head}
-                </Typography>
-              </th>
-            ))}
-          </tr></thead>
-        <tbody>
-          {customers.map(({ avatar, eventName, isBet, avgPrice, totalPrice }, index) => {
-            const isLast = index === customers.length - 1;
-            const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
+    <div className="flex w-full overflow-x-auto">
+      <table className="w-full ">
+        <tr className="uppercase   text-gray-300 px-2 lg:flex hidden ">
+          <th className="  w-12 ">Type</th>
+          <div className="w-full px-8 justify-between flex">
+            <th className="  ">Market</th>
+            <th className="  ">Amount</th>
+          </div>
+        </tr>
 
-            return (
-              <tr key={index}>
-                <td className={classes}>
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    {avgPrice}$
-                  </Typography>
+        {customers.map(({ avatar, eventName, isBet, totalPrice }, index) => {
+          return (
+            <div className=" ">
+              <div key={index} className="md:hidden hidden lg:flex w-full px-2 py-2 items-center gap-4">
+                <td className="w-12">
+                  <p className="font-normal" >Convert </p>
                 </td>
-                <td className={classes}>
-                  <Typography
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal"
-                  >
-                    <Content avatar={avatar} eventName={eventName} isBet={isBet} value={20} />
-                  </Typography>
+                <td className="w-full">
+                  <Content avatar={avatar} eventName={eventName} isBet={isBet} value={20} />
                 </td>
-                <td className={classes}>
-                  <div className=" items-end gap-2">
-                    <Typography className="text-black font-medium text-end">
-                      <div className=" text-black">${totalPrice}</div>
-                    </Typography>
-                    <Typography className="">
-                      <div className="flex justify-end text-gray-400 items-center ">
-                        <div className="">${totalPrice}</div>
-                        <SquareArrowOutUpRight size={12} />
-                      </div>
-                    </Typography>
+
+                <td className=" ">
+                  <p className="text-end">
+                    ${totalPrice}
+                  </p>
+                  <div className="flex gap-2 justify-end   text-gray-400 items-center ">
+                    <p className="">${totalPrice}</p>
+                    <SquareArrowOutUpRight size={12} />
                   </div>
                 </td>
-              </tr>
-            );
-          })}
-        </tbody>
+              </div>
+
+              <div key={index} className="lg:hidden sm:flex flex-col w-full px-2 py-2 items-center gap-4">
+                <div className="flex w-full gap-2 tems-center">
+                  <img width={48} className="rounded-md" src={avatar} alt="avatar" />
+                  <p className="text-base cursor-pointer font-normal">
+                    {eventName}
+                  </p>
+                </div>
+
+                <div className="justify-between w-full text-gray-600 flex py-2 items-center">
+                  <div className="items-center">
+                    <p className="text-sm">Convert</p>
+                    <div className="flex text-nowrap items-center">
+                      {isBet ? (
+                        <p className="text-green-600 bg-green-200  text-center text-sm w-8 font-semibold rounded-md">Yes</p>
+                      ) : (
+                        <p className="text-red-600 bg-gray-200 text-center  text-sm w-8 font-semibold rounded-md">No</p>
+                      )}
+                      {33} shares
+                    </div>
+                  </div>
+
+                  <div className=" ">
+                    <p className="text-end">
+                      ${totalPrice}
+                    </p>
+                    <div className="flex gap-2 justify-end   text-gray-400 items-center ">
+                      <p className="">in {totalPrice} minutes</p>
+                      <SquareArrowOutUpRight size={12} />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          );
+        })}
       </table>
-    </Card>
+    </div >
   );
 };
 

@@ -1,14 +1,12 @@
 import React from "react";
+import Button from "../Button/Button";
 import BuySell from "../cards/BuySell";
-import {
-    Tabs,
-    TabsHeader,
-    TabsBody,
-    Tab,
-    TabPanel,
-} from "@material-tailwind/react";
+
 const EventInfoCard = () => {
-    const [activeTab, setActiveTab] = React.useState < string > ('buy');
+    const [selectPanel, setSelectPanel] = React.useState < string > ('buy')
+    const handleTabs = (value: string) => {
+        setSelectPanel(value);
+    };
     const data = [
         {
             label: "Buy",
@@ -23,33 +21,27 @@ const EventInfoCard = () => {
 
     ];
     return (
-        <div>
-            <Tabs value={activeTab}>
-                <TabsHeader
-                    className="w-32 px-96   rounded-none border-b border-gray-300 bg-transparent p-0"
-                    indicatorProps={{
-                        className: "bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
-                    }}
-                >
-                    {data.map(({ label, value }) => (
-                        <Tab
-                            key={value}
-                            value={value}
-                            onClick={() => setActiveTab(value)}
-                            className={activeTab === value ? "border-b border-blue-700 text-gray-900" : ""}
-                        >
-                            {label}
-                        </Tab>
-                    ))}
-                </TabsHeader>
-                <TabsBody>
-                    {data.map(({ value, desc }) => (
-                        <TabPanel key={value} value={value}>
-                            {desc}
-                        </TabPanel>
-                    ))}
-                </TabsBody>
-            </Tabs>
+        <div className="fixed border-2 rounded-lg ">
+            <div className="flex px-2">
+                {data.map((item, index) => (
+                    <Button
+                        key={index}
+                        text={item.label}
+                        value={item.value}
+                        onClick={() => { handleTabs(item.value); }}
+                        className={`${selectPanel === `${item.value}` ? 'border-b-2 border-black' : 'border-b-2 border-gray-300'}  flex flex-col  font-medium cursor-pointer p-2  hover:border-b-gray-500  text-black text-nowrap`}
+                    />
+
+                ))}
+            </div>
+
+            {data.map((item) => (
+                selectPanel === item.value && (
+                    <div key={item.value} className="w-full  px-2 mt-3">
+                        {item.desc}
+                    </div>
+                )
+            ))}
         </div>
     )
 }

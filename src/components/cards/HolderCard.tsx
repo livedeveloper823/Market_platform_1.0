@@ -1,4 +1,3 @@
-import { Card, CardBody, Typography } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import UserProperty from "../cards/UserProperty";
 import { customers } from "../database";
@@ -17,8 +16,8 @@ const HolderCard: React.FC<HolderCard> = ({ first, second, icon }) => {
                 <h2 className="flex gap-2 text-lg text-black font-semibold">{icon} {first || second}</h2>
                 <p className="uppercase cursor-pointer text-sm text-gray-400">shares</p>
             </div>
-            <Card className="gap-4 border-b-2 border-gray-100">
-                <CardBody>
+            <div className="gap-4 border-b-2 border-gray-100">
+                <div>
                     <div className="divide-y divide-gray-200">
                         {customers.map(({ username, laterTime, avatar, position, address, volume }, index) => (
                             <div
@@ -28,22 +27,17 @@ const HolderCard: React.FC<HolderCard> = ({ first, second, icon }) => {
                             >
 
                                 <div className="flex w-full items-center justify-between">
+                                    <UserProperty avatar={avatar} username={username} address={address} position={position} volume={volume} />
 
-
-                                    <Typography>
-                                        <UserProperty avatar={avatar} username={username} address={address} position={position} volume={volume} />
-                                    </Typography>
-
-                                    <Typography className={`text-right ${first ? 'text-green-600' : second ? 'text-red-600' : 'text-blue-gray-500'}`}>
+                                    <p className={`text-right ${first ? 'text-green-600' : second ? 'text-red-600' : 'text-blue-gray-500'}`}>
                                         {laterTime}
-                                    </Typography>
+                                    </p>
                                 </div>
-
                             </div>
                         ))}
                     </div>
-                </CardBody>
-            </Card>
+                </div>
+            </div>
         </div>
     );
 };

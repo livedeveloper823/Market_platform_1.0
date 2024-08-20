@@ -1,6 +1,5 @@
 import React from "react";
-
-import { Button, Typography, Avatar } from "@material-tailwind/react";
+import Button from "../components/Button/Button";
 import { TrendingUp } from "lucide-react";
 // import Button from "../components/Button";
 
@@ -31,9 +30,9 @@ const App = () => {
         dispatch(getAllEvents())
     }, [])
     return (
-        <div className=" ">
+        <div className="h-screen overflow-hidden-scrollbar overflow-y-auto">
             <TopNavbar />
-            <div className="xl:px-36 justify-center">
+            <div className="xl:px-36 mt-36 justify-center overscroll-auto">
                 <div style={{ scrollbarWidth: 'none' }} className="mt-4 md:flex-row flex flex-col sm:overflow-x-scroll overflow-x-scroll md:gap-5 justify-center px-6 ">
                     {/* <div className=" flex  overflow-x-scroll gap-3 px-4"> */}
                     <TopEventCard text="2024 Election Forecast" btn_text="View" onClick={() => { }} className="w-full px-2 flex bg-gradient-to-r from-blue-600 to-blue-200" img_url="https://d3lome5o0h180x.cloudfront.net/eyJidWNrZXQiOiJiYWNrYm9uZS1hc3NldHMtcHJkIiwia2V5IjoiQVNUXzQ5OTIzMi9BU1RfNDk5MjMyLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0IjoiY29udGFpbiJ9fX0=" />
@@ -42,27 +41,28 @@ const App = () => {
                     <TopEventCard text="Trade Elections" btn_text="Sign Up" onClick={() => { }} className="w-full flex px-2 bg-gradient-to-r from-orange-500 to-orange-400" img_url="https://d3lome5o0h180x.cloudfront.net/eyJidWNrZXQiOiJiYWNrYm9uZS1hc3NldHMtcHJkIiwia2V5IjoiQVNUXzQ5OTIzMi9BU1RfNDk5MjMyLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0IjoiY29udGFpbiJ9fX0=" />
                 </div>
 
-
                 <div style={{ scrollbarWidth: 'none' }} className="flex overflow-x-scroll w-full gap-2 px-4 py-3">
                     <div className=" ">
-                        <Button style={{ fontSize: "14px", textTransform: "none", }} value="top"
-                            className={`${selectedButton === 'top' ? 'bg-blue-600 text-white' : 'bg-gray-200 border-gray-200 text-black'} text-white flex font-medium px-2 py-1 outline-none text-nowrap  justify-center items-center text-center  gap-2 rounded-md border-2 border-gray-200 after:bg-red-500 hover:border-blue-600 focus:bg-blue-700 focus:text-white focus:border-blue-700`}
-                            onClick={() => handleButtonClick('top')}>
-                            <TrendingUp size={24} />Top
-                        </Button>
+                        <Button
+                            text="Top"
+                            value="top"
+                            className={`${selectedButton === 'top' ? 'bg-blue-600  focus:text-white' : 'bg-gray-200 border-gray-200 text-black'}  flex font-medium px-3 py-2 outline-none text-nowrap  justify-center items-center text-center  gap-2 rounded-md border-2 border-gray-200 after:bg-red-500 hover:border-blue-600 focus:bg-blue-700 focus:text-white focus:border-blue-700`}
+                            onClick={() => handleButtonClick('top')} icon={<TrendingUp size={24} />}
+                        />
                     </div>
                     {
                         content.filterBtns.all.map((item, index) =>
                             <div className="">
-                                <Button style={{ fontSize: "14px", textTransform: "none", }} key={index} value={item.value} onClick={() => handleButtonClick(`${item.value}`)}
-                                    className={`${selectedButton === `${item.value}` ? 'bg-blue-600  focus:text-white' : 'bg-gray-200 text-black'}   font-medium p-2 outline-none text-nowrap  justify-center items-center text-center  rounded-md border-2 border-gray-200 after:bg-red-500 hover:border-blue-600 focus:bg-blue-700 focus:text-white focus:border-blue-700`}>{item.text}</Button>
+                                <Button key={index} value={item.value} onClick={() => handleButtonClick(`${item.value}`)}
+                                    text={item.text} className={`${selectedButton === `${item.value}` ? 'bg-blue-600  focus:text-white' : 'bg-gray-200 text-black'}   font-medium p-2 outline-none text-nowrap  justify-center items-center text-center  rounded-md border-2 border-gray-200 after:bg-red-500 hover:border-blue-600 focus:bg-blue-700 focus:text-white focus:border-blue-700`} />
+
                             </div>
                         )
                     }
                 </div>
 
                 <div style={{ scrollbarWidth: "none" }} className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-1 gap-2 ">
-                {/* <div style={{ scrollbarWidth: "none" }} className="flex flex-wrap  gap-2 "> */}
+                    {/* <div style={{ scrollbarWidth: "none" }} className="flex flex-wrap  gap-2 "> */}
                     {event.eventList
                         // .filter((key) => key.content.toLowerCase().includes(selectedButton.toLowerCase())) // Filter by selectedButton
                         .map((key, index) => (
@@ -84,18 +84,14 @@ const App = () => {
                 } */}
 
                 <div className="flex mt-3 justify-center">
-                    <Button style={{ textTransform: "none" }} className="bg-blue-500 text-white">View all</Button>
+                    <Button className="rounded-md px-2 py-1 bg-blue-700 text-white" text="View all"></Button>
                 </div>
 
                 <div className=" lg:px-6 lg:flex sm:px-6 gap-8">
                     <div className="w-full">
                         <div className="flex items-center justify-between">
-                            <Typography className="text-black font-medium">
-                                <p className="flex items-center py-4 text-2xl font-medium text-gray-600">Recent Activity</p>
-                            </Typography>
-                            <Typography>
-                                <Button style={{ textTransform: "none" }} onClick={() => { navigate('/activity') }} className="items-center  px-3 py-1 border border-gray-700 text-gray-600">See all</Button>
-                            </Typography>
+                            <p className="flex items-center py-4 text-2xl font-medium text-gray-600">Recent Activity</p>
+                            <Button onClick={() => { navigate('/activity') }} text="See all" className="rounded-full items-center px-2 border text-gray-600 border-gray-500 hover:bg-gray-200" />
                         </div>
                         {customers.map(({ eventName, username, laterTime, avatar, position, address, volume, isBet, isSold, price, count }, index) => (
                             <div
@@ -103,14 +99,14 @@ const App = () => {
                                 className="flex items-center justify-between py-3 last:pb-2"
                             >
                                 <div className="flex items-center gap-x-3">
-                                    <Avatar size="md" src={avatar} alt={eventName} variant="rounded" />
+                                    <img width={44} src={avatar} alt={eventName} className="rounded-md" />
                                     <div>
                                         {eventName &&
-                                            <Typography className="font-semibold cursor-pointer" onClick={() => navigate('/event')}>
+                                            <p className="font-semibold cursor-pointer" onClick={() => navigate('/event')}>
                                                 {eventName}
-                                            </Typography>
+                                            </p>
                                         }
-                                        <Typography className="text-sm items-center flex gap-1">
+                                        <div className="text-sm items-center flex gap-1">
                                             <div className="flex items-center text-base cursor-pointer gap-2" onClick={() => navigate('/profile')}>
                                                 <p className=" font-semibold hover:underline underline-offset-4">
                                                     <UserProperty avatar={avatar} username={username} address={address} position={position} volume={volume} />
@@ -124,24 +120,18 @@ const App = () => {
                                                 {count}</p>
                                             <p className=" text-base">at</p>
                                             <p className="font-">{price}¢ (${(price / 110).toPrecision(5)})</p>
-                                        </Typography>
+                                        </div>
                                     </div>
                                 </div>
-                                <Typography>
-                                    {laterTime} ago
-                                </Typography>
+                                <p> {laterTime} ago</p>
                             </div>
                         ))}
                     </div>
 
                     <div className="w-full">
                         <div className="flex items-center justify-between">
-                            <Typography className="text-black font-medium">
-                                <p className="flex items-center py-4 text-2xl font-medium text-gray-600">Top Volume This Week</p>
-                            </Typography>
-                            <Typography>
-                                <Button style={{ textTransform: "none" }} onClick={() => { navigate('/activity') }} className="items-center  px-3 py-1 border border-gray-700 text-gray-600">See all</Button>
-                            </Typography>
+                            <p className="flex items-center py-4 text-2xl font-medium text-gray-600">Top Volume This Week</p>
+                            <Button onClick={() => { navigate('/rank') }} text="See all" className="rounded-full items-center px-2 border text-gray-600 border-gray-500 hover:bg-gray-200" />
                         </div>
                         {customers.map(({ username, avatar, position, address, volume }, index) => (
                             <div
@@ -149,10 +139,7 @@ const App = () => {
                                 className="flex items-center justify-between py-2 last:pb-1 cursor-pointer"
                                 onClick={() => navigate(`/profile?${index}`)}
                             >
-                                <Typography>
-                                    <UserProperty avatar={avatar} username={username} address={address} position={position} volume={volume} />
-                                </Typography>
-
+                                <UserProperty avatar={avatar} username={username} address={address} position={position} volume={volume} />
                             </div>
                         ))}
                     </div>

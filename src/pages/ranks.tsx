@@ -1,6 +1,6 @@
 import React from "react";
 // import { useNavigate } from "react-router-dom";
-import { Button } from "@material-tailwind/react";
+import Button from "../components/Button/Button";
 import TopNavbar from "../components/TopNavbar";
 import { Clock3Icon } from "lucide-react";
 import { getUsersData } from "../store/reducers/users";
@@ -21,38 +21,38 @@ const Leaderboard = () => {
     dispatch(getUsersData());
   }, []);
   return (
-    <div className="">
+    <div className="h-screen overflow-hidden-scrollbar overflow-y-auto">
       <TopNavbar />
-      <div className=" justify-center pt-8">
+      <div className="mt-36 justify-center pt-8">
 
         <div className="xl:px-[28rem] lg:px-36 md:px-4 ">
           <div className="flex flex-col gap-6">
             <p className="flex items-center text-4xl font-medium text-black justify-center  ">Leaderboard</p>
             <div className="flex justify-center gap-2">
               <Button
-                style={{ textTransform: "none" }}
+                text="Day"
                 value="day"
                 className={`${activeButton === 'day' ? 'bg-black text-white' : 'bg-gray-200 text-gray-600'} px-3 py-1 rounded-full`}
                 onClick={() => handleButtonClick('day')}
-              >Day</Button>
+              />
               <Button
-                style={{ textTransform: "none" }}
+                text="Week"
                 value="week"
                 className={`${activeButton === 'week' ? 'bg-black text-white' : 'bg-gray-200 text-gray-600'} px-3 py-1 rounded-full`}
                 onClick={() => handleButtonClick('week')}
-              >Week</Button>
+              />
               <Button
-                style={{ textTransform: "none" }}
+                text="Month"
                 value="month"
                 className={`${activeButton === 'month' ? 'bg-black text-white' : 'bg-gray-200 text-gray-600'} px-3 py-1 rounded-full`}
                 onClick={() => handleButtonClick('month')}
-              >Month</Button>
+              />
               <Button
-                style={{ textTransform: "none" }}
+                text="All"
                 value="all"
                 className={`${activeButton === 'all' ? 'bg-black text-white' : 'bg-gray-200 text-gray-600'} px-3 py-1 rounded-full`}
                 onClick={() => handleButtonClick('all')}
-              >All</Button>
+              />
             </div>
             <div className="flex justify-center gap-2  ">
               <Clock3Icon />

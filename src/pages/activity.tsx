@@ -11,10 +11,10 @@ const Acticity = () => {
         dispatch(getUsersData())
     }, [])
     return (
-        <div className="">
+        <div className="h-screen overflow-hidden-scrollbar overflow-y-auto">
             <TopNavbar />
-            <div className="flex justify-center pt-8">
-                <div className=" lg:px-[22vw]  sm:w-full sm:px-2  gap-2 justify-center">
+            <div className="flex mt-36 justify-center ">
+                <div className="lg:px-[22vw]  sm:w-full sm:px-2  gap-2 justify-center">
                     <ActivityListItem />
                 </div>
             </div>

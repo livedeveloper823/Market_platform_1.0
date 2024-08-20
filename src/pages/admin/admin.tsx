@@ -1,8 +1,9 @@
 import React from "react";
 import TopNavbar from "../../components/TopNavbar";
+import Button from "../../components/Button/Button";
 import { UserPlusIcon, ArrowLeftIcon, ArrowRightIcon, ChevronsUpDownIcon, PencilIcon, Trash2 } from "lucide-react";
 import {
-    Card, CardHeader, Typography, Button, CardBody, Chip, CardFooter, Tabs, TabsHeader, Tab, Avatar, Tooltip,
+    Chip, Tabs, Tooltip,
 } from "@material-tailwind/react";
 import { SearchIcon } from "lucide-react";
 import { useNavigate } from "react-router";
@@ -13,13 +14,10 @@ const TABS = [
         value: "all",
     },
     {
-        label: "Monitored",
-        value: "monitored",
+        label: "New",
+        value: "newevent",
     },
-    {
-        label: "Unmonitored",
-        value: "unmonitored",
-    },
+
 ];
 
 const TABLE_HEAD = ["Member", "Function", "Status", "Employed", ""];
@@ -79,8 +77,7 @@ export default function Admin() {
     const handleDeleteEvent = () => {
         const confirmDelete = window.confirm("Are you sure you want to delete this event?");
         if (confirmDelete) {
-            // Proceed with the deletion logic here
-            alert('Event deleted!'); // Replace this with your delete logic
+            alert('Event deleted!');
         }
     };
 
@@ -105,50 +102,46 @@ export default function Admin() {
     };
 
     return (
-        <div className="">
+        <div className="h-screen overflow-hidden-scrollbar overflow-y-auto">
             <TopNavbar />
             <div className="flex justify-center">
-                {/* <div className="   "> */}
-                <div className=" flex w-full lg:px-[18vw] border-2 md:px-[12vw] sm:px-[4vw] gap-4">
-                    <Card className=" w-full ">
-                        <CardHeader floated={false} shadow={false} className="rounded-none">
+
+                <div className="mt-36 flex w-full lg:px-[18vw] border-2 md:px-[12vw] sm:px-[4vw] gap-4">
+                    <div className=" w-full ">
+                        <div className="rounded-none">
                             <div className="flex mb-8 items-center justify-between gap-8">
-                                <div>
-                                    <Typography variant="h5" color="blue-gray">
+                                <div className="">
+                                    <p className="text-xl">
                                         Event list
-                                    </Typography>
-                                    <Typography color="gray" className="mt-1 font-normal">
+                                    </p>
+                                    <p color="gray" className="mt-1 font-normal">
                                         See information about all events
-                                    </Typography>
+                                    </p>
                                 </div>
-                                <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-                                    <Button variant="outlined" size="sm">
-                                        view all
-                                    </Button>
-                                    <Button onClick={() => { navigate('addevent') }} className="flex bg-gray-400 items-center gap-3" size="sm">
-                                        <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add event
-                                    </Button>
+                                <div className="flex  shrink-0 flex-col gap-2 sm:flex-row">
+
+                                    <Button onClick={() => { navigate('addevent') }} className="flex rounded-md px-2 py-1 bg-white border border-gray-400  items-center gap-3" text="All" />
+                                    <Button onClick={() => { navigate('addevent') }} className="flex rounded-full px-2 py-1 bg-white border border-gray-400  items-center gap-3" text="Add Event" icon={<UserPlusIcon strokeWidth={2} className="h-4 w-4" />} />
                                 </div>
                             </div>
                             <div className="flex flex-col items-center justify-between gap-4 md:flex-row px-4">
-                                <Tabs value="all" className="flex w-full md:w-max ">
-                                    <TabsHeader>
+                                <Tabs value="all" className="flex flex-col w-full md:w-max ">
+                                    <div className="flex">
                                         {TABS.map(({ label, value }) => (
-                                            <Tab key={value} value={value}>
-                                                <Button style={{ textTransform: 'none' }} className="bg-gray-500 items-center p-2 " >{label}</Button>
-                                            </Tab>
+                                            <div key={value} className="flex gap-3 w-full   "  >
+                                                <Button className="bg-white w-full text-black border border-gray-400 items-center px-6 rounded-md " text={label} />
+                                            </div>
                                         ))}
-                                    </TabsHeader>
+                                    </div>
                                 </Tabs>
-                                {/* <div className="flex w-full md:w-72"> */}
-                                <div className="flex gap-2 border-2 rounded-full px-2">
+
+                                <div className="flex gap-2 border-2 rounded-full px-2 py-2">
                                     <SearchIcon color="black" />
                                     <input type="text" className="w-full outline-none" placeholder="Search events" />
                                 </div>
-                                {/* </div> */}
                             </div>
-                        </CardHeader>
-                        <CardBody className="  overflow-scroll px-0">
+                        </div>
+                        <div className="  overflow-scroll px-0">
                             <table className="mt-4 w-full min-w-max table-auto text-left">
                                 <thead>
                                     <tr>
@@ -157,16 +150,12 @@ export default function Admin() {
                                                 key={head}
                                                 className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
                                             >
-                                                <Typography
-                                                    variant="small"
-                                                    color="blue-gray"
-                                                    className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
-                                                >
+                                                <p className="flex items-center justify-between gap-2 font-normal leading-none opacity-70" >
                                                     {head}{" "}
                                                     {index !== TABLE_HEAD.length - 1 && (
                                                         <ChevronsUpDownIcon strokeWidth={2} className="h-4 w-4" />
                                                     )}
-                                                </Typography>
+                                                </p>
                                             </th>
                                         ))}
                                     </tr>
@@ -183,41 +172,25 @@ export default function Admin() {
                                                 <tr key={name}>
                                                     <td className={classes}>
                                                         <div className="flex items-center gap-3">
-                                                            <Avatar src={img} alt={name} size="sm" />
+                                                            <img src={img} alt={name} />
                                                             <div className="flex flex-col">
-                                                                <Typography
-                                                                    variant="small"
-                                                                    color="blue-gray"
-                                                                    className="font-normal"
-                                                                >
+                                                                <p className="font-normal"  >
                                                                     {name}
-                                                                </Typography>
-                                                                <Typography
-                                                                    variant="small"
-                                                                    color="blue-gray"
-                                                                    className="font-normal opacity-70"
-                                                                >
+                                                                </p>
+                                                                <p className="font-normal opacity-70"  >
                                                                     {email}
-                                                                </Typography>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td className={classes}>
                                                         <div className="flex flex-col">
-                                                            <Typography
-                                                                variant="small"
-                                                                color="blue-gray"
-                                                                className="font-normal"
-                                                            >
+                                                            <p className="font-normal" >
                                                                 {job}
-                                                            </Typography>
-                                                            <Typography
-                                                                variant="small"
-                                                                color="blue-gray"
-                                                                className="font-normal opacity-70"
-                                                            >
+                                                            </p>
+                                                            <p className="font-normal opacity-70"   >
                                                                 {org}
-                                                            </Typography>
+                                                            </p>
                                                         </div>
                                                     </td>
                                                     <td className={classes}>
@@ -231,59 +204,49 @@ export default function Admin() {
                                                         </div>
                                                     </td>
                                                     <td className={classes}>
-                                                        <Typography
-                                                            variant="small"
-                                                            color="blue-gray"
-                                                            className="font-normal"
-                                                        >
+                                                        <p className="font-normal" >
                                                             {date}
-                                                        </Typography>
+                                                        </p>
                                                     </td>
                                                     <td className={classes}>
-                                                        <Tooltip content="Edit Event">
-                                                            <Button variant="text" onClick={() => { alert('ddd') }} >
-                                                                <PencilIcon className="h-4 w-4" />
-                                                            </Button>
-                                                        </Tooltip>
-                                                        <Tooltip content="Delete Event">
-                                                            <Button variant="text" onClick={handleDeleteEvent} >
-                                                                <Trash2 className="h-4 w-4" />
-                                                            </Button>
-                                                        </Tooltip>
-
+                                                        <div className="flex gap-5">
+                                                            <Tooltip content="Edit Event">
+                                                                <Button icon={<PencilIcon className="h-4 w-4" />} onClick={() => { alert('ddd') }} />
+                                                            </Tooltip>
+                                                            <Tooltip content="Delete Event">
+                                                                <Button icon={<Trash2 className="h-4 w-4" />} onClick={handleDeleteEvent} />
+                                                            </Tooltip>
+                                                        </div>
                                                     </td>
-
                                                 </tr>
                                             );
                                         },
                                     )}
                                 </tbody>
                             </table>
-                        </CardBody>
+                        </div>
 
-                        <CardFooter className="flex items-center justify-center border-t border-blue-gray-50 p-4">
+                        <div className="flex items-center justify-center border-t border-blue-gray-50 p-4">
                             <Button
-                                variant="text"
                                 className="flex items-center gap-2 rounded-full border-2 p-2 hover:text-white hover:bg-gray-500 outline-none"
                                 onClick={prev}
-                                disabled={pagination === 1}
-                            >
-                                <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Previous
-                            </Button>
+                                // disabled={pagination === 1}
+                                icon={<ArrowLeftIcon strokeWidth={2} className="h-4 w-4" />}
+                                text="Previous"
+                            />
                             <div className="flex items-center gap-2">
                                 ---1234--
                             </div>
                             <Button
-                                variant="text"
+
                                 className="flex items-center gap-2 rounded-full border-2 p-2 hover:text-white hover:bg-gray-500 outline-none"
                                 onClick={next}
-                                disabled={pagination === 5}
-                            >
-                                Next
-                                <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
-                            </Button>
-                        </CardFooter>
-                    </Card>
+                                // disabled={pagination === 5}
+                                icon={<ArrowRightIcon strokeWidth={2} className="h-4 w-4" />}
+                                text="Next"
+                            />
+                        </div>
+                    </div>
                 </div>
 
             </div >

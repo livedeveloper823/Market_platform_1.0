@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Switch, Button, Textarea, Input } from "@material-tailwind/react";
+import Button from "../components/Button/Button";
 import TopNavbar from "../components/TopNavbar";
 // import Button from "../components/Button";
 import { CameraIcon, Megaphone, Save, UserCog } from "lucide-react";
@@ -32,12 +32,14 @@ const Setting = () => {
             src="https://d3lome5o0h180x.cloudfront.net/eyJidWNrZXQiOiJiYWNrYm9uZS1hc3NldHMtcHJkIiwia2V5IjoiQVNUXzQ5OTIzMi9BU1RfNDk5MjMyLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0IjoiY29udGFpbiJ9fX0="
             alt=""
           />
-          <Button style={{ color: 'black', textTransform: 'none' }}
-            value="saveChange"  
+          <Button
+            text="Upload"
+            icon={<CameraIcon size={18} />}
+            value="saveChange"
             onClick={() => { }}
-            className="flex font-semibold items-center gap-1 px-2 py-1 text-white bg-gray-200 rounded-full">
-            <CameraIcon size={18} />Upload
-          </Button>
+            className="flex font-semibold items-center gap-1 px-2 py-1 text-white bg-gray-200 rounded-full"
+          />
+
         </div>
         <label className="   py-2 text-base font-semibold text-gray-900 ">
           <p>Email</p>
@@ -47,22 +49,23 @@ const Setting = () => {
           Last Name
         </label>
 
-        <Input onChange={() => { }} className="py-2 rounded-lg focus:border-black text-base" />
+        <input type="text" onChange={() => { }} className="border py-2 rounded-lg focus:border-black text-base" />
 
         <label className="flex py-2 text-base font-semibold text-gray-900 ">
-          Bio
+          Desc
         </label>
-        <Textarea size="md" placeholder="Bio" className="rounded-lg  p-4 focus:border-black  text-base" />
+        <textarea placeholder="Bio" className="rounded-lg p-4 focus:border-black text-base"></textarea>
 
         <div className="flex pl-8 pt-4">
           <Button
-            style={{ textTransform: 'none' }}
+            text="Save Change"
+            icon={<Save size={20} />}
             value="saveChange"
             onClick={() => { alert('save') }}
             className="flex font-semibold items-center gap-2 px-2 py-2 bg-blue-500 cursor-pointer  hover:bg-gray-400 rounded-lg"
-          ><Save size={20} />Save Change</Button>
+          />
         </div>
-      </div>
+      </div >
     );
   };
   const SetNotification = () => {
@@ -70,19 +73,13 @@ const Setting = () => {
       <div className="flex w-full flex-col justify-center font-semibold">
         <h1 className="text-2xl font-semibold pb-2">Notification Settings</h1>
         <div className="flex flex-col border rounded-md p-4">
-          <Typography className="text-xl">
+          <p className="text-xl">
             Email
-          </Typography>
+          </p>
           <div className="flex justify-between items-center py-3">
             <div className="text-sm text-gray-400">Market Updates</div>
-            
-            <div className="border-2 rounded-full w-12 bg-blue-200">
-              <Switch
-                color="blue"
-                checked={isChecked}
-                onChange={handleChange}
-              />
-              {/* <span>Switch is {isChecked ? 'on' : 'off'}</span> */}
+            <div className="border-2 rounded-full w-12 bg-blue-200" onClick={handleChange}>
+              <span> {isChecked ? 'On' : 'Off'}</span>
             </div>
           </div>
         </div>
@@ -90,23 +87,25 @@ const Setting = () => {
     );
   };
   return (
-    <div className=" ">
+    <div className="h-screen overflow-hidden-scrollbar overflow-y-auto">
       <TopNavbar />
-      <div className="flex justify-center">
+      <div className="flex mt-36  justify-center">
         <div className="flex sm:w-full sm:px-4 md:w-full lg:w-full xl:w-[48vw] w-full py-8">
           <div className=" text-lg">
             <Button
-              style={{ color: 'black', textTransform: 'none' }}
+              text="Profile"
+              icon={< UserCog />}
               value="profile"
               onClick={() => setIsProfile(true)}
-              className="flex w-full text-xl items-center font-semibold shadow-none hover:bg-gray-300 gap-4 px-4 py-2 focus:bg-gray-400 rounded-lg"><UserCog />Profile</Button>
+              className="flex w-full text-xl items-center font-semibold  hover:bg-gray-300 gap-4 px-4 py-2 focus:bg-gray-400 rounded-lg" />
             <Button
-              style={{ color: 'black', textTransform: 'none' }}
+              text="Notifications"
+              icon={<Megaphone />}
               value="profile"
               onClick={() => {
                 setIsProfile(false);
               }}
-              className="flex w-full text-xl font-semibold items-center shadow-none gap-4 px-4 py-2 focus:bg-gray-400 rounded-lg"><Megaphone />Notifications</Button>
+              className="flex w-full text-xl items-center font-semibold  hover:bg-gray-300 gap-4 px-4 py-2 focus:bg-gray-400 rounded-lg" />
           </div>
           <div className=" flex sm:w-full sm:px-8">
             {isProfile ? <ProfileSetting /> : <SetNotification />}
