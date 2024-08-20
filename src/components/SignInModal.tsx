@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "./Button/Button";
 import instance from "../utils/axios";
 import { ModalProps } from "../types";
 import { GoogleIcon } from "./icons";
@@ -7,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 import useNotification from "../hooks/useNotification";
 // import { useNavigate } from "react-router-dom";
 
-const SignInModal = ({ isOpen, onClose, title }: ModalProps) => {
+const SignInModal = ({ isOpen, onClose, title, connect }: ModalProps) => {
     const { showNotification } = useNotification()
     // const { navigate } =useNavigate()
 
@@ -72,7 +71,7 @@ const SignInModal = ({ isOpen, onClose, title }: ModalProps) => {
                 }}
             >
                 <div className="flex flex-col gap-2 ">
-                    <p className="text-center text-2xl text-black font-bold">{title}</p>
+                    <p className="text-center text-2xl font-bold">{title}</p>
                     <div className="cursor-pointer flex flex-row   bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg w-[100%] h-[80px]" onClick={() => googleSignIn()}>
                         <div className="flex items-center justify-center ml-2 my-auto w-[50px] h-[50px] bg-white rounded-lg">
                             <GoogleIcon />
@@ -89,7 +88,7 @@ const SignInModal = ({ isOpen, onClose, title }: ModalProps) => {
                                 <div className="ml-2 font-bold text-black bg-gray-200 w-[30%] rounded-lg text-1xl flex items-center justify-center cursor-pointer hover:bg-green-500" onClick={() => handleClick()}>Continue</div>
                             </div>
                             <div className="flex gap-2 flex-row justify-between">
-                                <input type="text" className="w-full text-black pl-3 border border-gray-300 rounded-lg  py-2" placeholder="Email Name" onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
+                                <input type="text" className="w-full pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Email Name" onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
                             </div>
                             <input type="password" className="pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Password" onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
                         </div>
@@ -103,8 +102,13 @@ const SignInModal = ({ isOpen, onClose, title }: ModalProps) => {
                         </div>}
                     <hr />
 
-                    <Button text="MetaMask" className="text-black w-full border justify-start" />
-                    <Button text="WalletConnect" className="text-black w-full border justify-start" />
+                    <div style={{ textTransform: 'none' }} className="text-black flex gap-5 items-center w-full   px-10 cursor-pointer font-bold py-1 rounded-md shadow-md" onClick={connect}>
+                        <img src="https://img.freepik.com/premium-vector/metamask-logo-crypto-wallet-defi-web3-dapps-nfts-isolated-white-background_337410-1911.jpg?w=826" width={36} height={36} alt="" />Metamask
+                    </div>
+
+                    <div style={{ textTransform: 'none' }} className="text-black flex gap-5 items-center w-full   px-10 cursor-pointer font-bold py-3 rounded-md shadow-md">
+                        <img src="https://1000logos.net/wp-content/uploads/2022/05/WalletConnect-Logo-500x281.png" width={36} height={48} alt="" className="my-1" /> WalletConnect
+                    </div>
                     <p className="border-b-2   text-center text-1xl mt-5"> Privacy Terms</p>
                 </div>
             </div>
