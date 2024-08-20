@@ -28,7 +28,6 @@ const MobileFooter = () => {
         logout()
     }
     const { isLoggedIn, logout } = useAuth();
-
     const toggleSidebar = () => {
         setIsSidebarOpen((prev) => !prev);
     };

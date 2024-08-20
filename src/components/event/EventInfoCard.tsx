@@ -3,10 +3,11 @@ import Button from "../Button/Button";
 import BuySell from "../cards/BuySell";
 
 const EventInfoCard = () => {
-    const [selectPanel, setSelectPanel] = React.useState < string > ('buy')
+    const [selectPanel, setSelectPanel] = React.useState<string>('buy')
     const handleTabs = (value: string) => {
         setSelectPanel(value);
     };
+
     const data = [
         {
             label: "Buy",

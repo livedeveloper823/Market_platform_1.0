@@ -70,7 +70,6 @@ const AddEvent = () => {
                         className="flex w-full py-2 h-full rounded-md shadow-sm ring-1  ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
                     />
 
-
                     <label className='flex pb-1 text-lg font-semibold text-gray-900 '>
                         Avatar
                     </label>

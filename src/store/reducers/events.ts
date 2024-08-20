@@ -47,5 +47,4 @@ export const addEvent = (eventData: { title: string; volume: string; desc: strin
         }
     }
 }
-
 export default events.reducer;

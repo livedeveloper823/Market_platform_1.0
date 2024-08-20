@@ -5,6 +5,7 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider as ReduxProvider } from 'react-redux'
 import { store } from './store'
+// import { MetaMaskProvider } from "@metamask/sdk-react";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

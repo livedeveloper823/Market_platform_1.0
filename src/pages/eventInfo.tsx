@@ -114,7 +114,6 @@ const Profile = () => {
                   <div className=" md:px-16 opacity-30">
                     <Logo />
                   </div>
-
                 </div>
               </div>
             </div>
