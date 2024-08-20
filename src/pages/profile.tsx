@@ -15,8 +15,11 @@ import { getUsersData } from "../store/reducers/users";
 import { dispatch, useSelector } from "../store";
 import Logo from "../components/Logo";
 import MobileFooter from "../components/MobileFooter";
+import { useMetamask } from "../contexts/useMetamask";
 
 const Profile = () => {
+  const { isMetamaskConnected, accounts } = useMetamask()
+
   const navigate = useNavigate();
   // Getting Data
   const username = useSelector((state) => state.userInfo.user.username);
@@ -31,12 +34,12 @@ const Profile = () => {
       <div className="flex justify-center px-4 py-4">
         <div className="flex w-[60rem] flex-col gap-4 ">
           <div className="flex px-4 py-4 justify-between items-center text-black-700 " >
-            <div className="flex gap-4">
+            <div className="flex items-center gap-4">
               <Avatar className="rounded-full" src="https://d3lome5o0h180x.cloudfront.net/eyJidWNrZXQiOiJiYWNrYm9uZS1hc3NldHMtcHJkIiwia2V5IjoiQVNUXzQ5OTIzMi9BU1RfNDk5MjMyLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0IjoiY29udGFpbiJ9fX0=" alt="" />
               <div className="  ">
                 <div className="text-4xl pb-4 font-bold">{username}</div>
                 <div className="flex gap-6">
-                  <div className="bg-gray-300 px-2 rounded-md">{address}</div>
+                  <div className="bg-gray-300 px-2 rounded-md">{isMetamaskConnected ? accounts : ""}</div>
                   <div className="text-sm text-gray-400">Joined Aug 2024</div>
                 </div>
               </div>

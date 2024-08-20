@@ -14,8 +14,8 @@ const Content: React.FC<ContentProps> = ({
 
         className="flex items-center gap-2"
         placeholder="" // Add this if required
-        onPointerEnterCapture={() => { }} // Add this if required
-        onPointerLeaveCapture={() => { }} // Add this if required
+        // onPointerEnterCapture={() => { }} // Add this if required
+        // onPointerLeaveCapture={() => { }} // Add this if required
       >
         <Avatar src={avatar} alt="avatar" />
         <div>

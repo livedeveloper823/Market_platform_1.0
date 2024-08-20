@@ -16,8 +16,8 @@ const EventCard: React.FC<EventCardProps> = ({ img, text, betAmount, state }) =>
 
     const [which, setWhich] = React.useState < string > ()
     const navigate = useNavigate()
-    const [isYesHovered, setIsYesHovered] = React.useState(false);
-    const [isNoHovered, setIsNoHovered] = React.useState(false);
+    const [isYesHovered, setIsYesHovered] = React.useState<number | null>(null);
+    const [isNoHovered, setIsNoHovered] = React.useState<number | null>(null);
     // const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     //     const inputValue = e.target.value;
     //     if (inputValue === '' || /^[0-9]*$/.test(inputValue)) {
@@ -82,18 +82,18 @@ const EventCard: React.FC<EventCardProps> = ({ img, text, betAmount, state }) =>
                                             <Button
                                                 onClick={handleYesBettng}
                                                 style={{ textTransform: 'none' }}
-                                                onMouseEnter={() => setIsYesHovered(true)}
-                                                onMouseLeave={() => setIsYesHovered(false)}
-                                                className={`w-full border-none text-nowrap items-center px-2 py-1 text-xs bg-green-300 text-green-600`}>
-                                                {isYesHovered ? `${item.percent}%` : 'Yes'}
+                                                onMouseEnter={() => setIsYesHovered(index)}
+                                                onMouseLeave={() => setIsYesHovered(null)}
+                                                className={`w-9 border-none text-nowrap items-center px-2 py-1 text-xs bg-green-300 text-green-600`}>
+                                                {isYesHovered == index ? `${item.percent}%` : 'Yes'}
                                             </Button>
                                             <Button
                                                 onClick={handleNoBettng}
                                                 style={{ textTransform: 'none' }}
-                                                onMouseEnter={() => setIsNoHovered(true)}
-                                                onMouseLeave={() => setIsNoHovered(false)}
-                                                className={`w-full border-none text-nowrap items-center px-2 py-1 bg-red-300 text-red-600`}>
-                                                {isNoHovered ? `${100 - Number(item.percent)}%` : 'No'}
+                                                onMouseEnter={() => setIsNoHovered(index)}
+                                                onMouseLeave={() => setIsNoHovered(null)}
+                                                className={`w-9 border-none text-nowrap items-center px-2 py-1 bg-red-300 text-red-600`}>
+                                                {isNoHovered == index ? `${100 - Number(item.percent)}%` : 'No'}
                                             </Button>
                                         </div>
                                     </div>

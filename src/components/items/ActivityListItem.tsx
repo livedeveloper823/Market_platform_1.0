@@ -16,9 +16,7 @@ const ActivityListItem: React.FC = () => {
                     <Typography className="text-black font-medium">
                         <p className="flex items-center px-6 py-4 text-3xl font-medium text-black"> Activity</p>
                     </Typography>
-                    <Typography
-                        variant="small"
-                        color="blue"
+                    <div
                         className="font-bold"
                     >
                         <Menu>
@@ -33,7 +31,7 @@ const ActivityListItem: React.FC = () => {
                                 <MenuItem onClick={() => setMenuNum(10000)}>$10,000</MenuItem>
                             </MenuList>
                         </Menu>
-                    </Typography>
+                    </div>
                 </div>
                 <div className="divide-y divide-gray-200">
                     {customers.map(({ eventName, username, laterTime, avatar, position, address, volume, isBet, isSold, price, count }, index) => (
@@ -49,7 +47,7 @@ const ActivityListItem: React.FC = () => {
                                             {eventName}
                                         </Typography>
                                     }
-                                    <Typography className="text-sm items-center flex gap-1">
+                                    <div className="text-sm items-center flex gap-1">
                                         <div className="flex items-center text-base cursor-pointer gap-2" onClick={() => navigate('/profile')}>
                                             <p className=" font-semibold hover:underline underline-offset-4">
                                                 <UserProperty avatar={avatar} username={username} address={address} position={position} volume={volume} />
@@ -63,12 +61,12 @@ const ActivityListItem: React.FC = () => {
                                             {count}</p>
                                         <p className=" text-base">at</p>
                                         <p className="font-">{price}¢ (${(price / 110).toPrecision(5)})</p>
-                                    </Typography>
+                                    </div>
                                 </div>
                             </div>
-                            <Typography>
+                            <p>
                                 {laterTime} ago
-                            </Typography>
+                            </p>
                         </div>
                     ))}
                 </div>

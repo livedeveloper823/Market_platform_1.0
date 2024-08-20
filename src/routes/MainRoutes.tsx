@@ -1,7 +1,6 @@
 import App from "../pages/app"
 import Market from "../pages/market";
 import Profile from "../pages/profile"
-import AuthGuard from "../contexts/AuthGurad";
 import Setting from "../pages/setting"
 import Activity from "../pages/activity"
 import Leaderboard from "../pages/ranks"
@@ -22,11 +21,7 @@ const MainRoutes = {
         },
         {
             path: "/profile",
-            element: (
-                <AuthGuard>
-                    <Profile />
-                </AuthGuard>
-            )
+            element: <Profile />
         },
         {
             path: "/setting",

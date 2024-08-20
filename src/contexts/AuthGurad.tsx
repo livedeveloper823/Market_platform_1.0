@@ -9,8 +9,10 @@ interface AuthGuardProps {
 const AuthGuard: React.FC<AuthGuardProps> = ({ children }) => {
 
     const isLoggedIn = useSelector((state) => state.userInfo.isLoggedIn);
+    
     const navigate = useNavigate();
     const location = useLocation();
+    
 
 
     useEffect(() => {
