@@ -28,6 +28,7 @@ const MobileFooter = () => {
         logout()
     }
     const { isLoggedIn, logout } = useAuth();
+
     const toggleSidebar = () => {
         setIsSidebarOpen((prev) => !prev);
     };
@@ -58,7 +59,7 @@ const MobileFooter = () => {
     }, [prevScrollPos]);
 
     return (
-        <div className={`fixed z-50 bottom-0 left-0 lg:hidden sm:w-full w-full border-2 bg-gray-100 text-white px-12 py-3 rounded-md transition-transform duration-300 ${isHidden ? 'transform translate-y-full' : ''}`}>
+        <div className={`fixed z-50 bottom-0 left-0 lg:hidden sm:w-full w-full border bg-gray-100 text-white px-12 py-3 rounded-md transition-transform duration-300 ${isHidden ? 'transform translate-y-full' : ''}`}>
             {/* Sidebar */}
             <SignInModal isOpen={inOpen} onClose={handleInClick} title="Sign In" />
             <SignInModal isOpen={upOpen} onClose={handleUpClick} title="Sign Up" />

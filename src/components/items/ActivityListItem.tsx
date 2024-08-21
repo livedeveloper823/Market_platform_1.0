@@ -12,7 +12,7 @@ const ActivityListItem: React.FC = () => {
                 <p className="flex items-center px-6 text-2xl font-medium text-black"> Activity</p>
 
                 {/* <Button className="text-lg px-4 py-2 outline-none text-black text-center bg-gray-200 hover:bg-gray-400 rounded-full" text={`Min ${menuNum}`} > */}
-                    <select className=" bg-white  border-2  py-1 z-50 w-28 text-md rounded-md text-gray-800 border-neutral-400 outline-none font-semibold gap-1">
+                    <select className=" bg-white  border  py-1 z-50 w-28 text-md rounded-md text-gray-800 border-neutral-400 outline-none font-semibold gap-1">
                         <option onClick={() => setMenuNum("Amount")}>None</option>
                         <option onClick={() => setMenuNum(10)}>$10</option>
                         <option onClick={() => setMenuNum(100)}>$100</option>

@@ -78,7 +78,7 @@ const Setting = () => {
           </p>
           <div className="flex justify-between items-center py-3">
             <div className="text-sm text-gray-400">Market Updates</div>
-            <div className="border-2 rounded-full w-12 bg-blue-200" onClick={handleChange}>
+            <div className="border rounded-full w-12 bg-blue-200" onClick={handleChange}>
               <span> {isChecked ? 'On' : 'Off'}</span>
             </div>
           </div>

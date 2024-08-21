@@ -10,21 +10,21 @@ import { MetaMaskProvider } from '@metamask/sdk-react'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ReduxProvider store={store}>
-      <BrowserRouter>
-        <MetaMaskProvider
-          debug={false}
-          sdkOptions={{
-            dappMetadata: {
-              name: "Example React Dapp",
-              url: window.location.href,
-            },
-            infuraAPIKey: "3cf40b835db94770b6d0ca73ff0b4a50",
-            // Other options.
-          }}
-        >
+      <MetaMaskProvider
+        debug={false}
+        sdkOptions={{
+          dappMetadata: {
+            name: "Example React Dapp",
+            url: window.location.href,
+          },
+          infuraAPIKey: "3cf40b835db94770b6d0ca73ff0b4a50",
+          // Other options
+        }}
+      >
+        <BrowserRouter>
           <App />
-        </MetaMaskProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </MetaMaskProvider>
     </ReduxProvider>
   </React.StrictMode>,
 )

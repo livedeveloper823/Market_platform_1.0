@@ -16,17 +16,11 @@ interface EventCardProps {
 const EventCard: React.FC<EventCardProps> = ({ img, text, betAmount, state }) => {
 
     const [which, setWhich] = React.useState < string > ()
-    const navigate = useNavigate()
     const [isYesHovered, setIsYesHovered] = React.useState < number | null > (null);
     const [isNoHovered, setIsNoHovered] = React.useState < number | null > (null);
-    // const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    //     const inputValue = e.target.value;
-    //     if (inputValue === '' || /^[0-9]*$/.test(inputValue)) {
-    //         setBetPrice(inputValue === '' ? 0 : parseInt(inputValue, 10));
-    //     }
-    // };
+    
     const [isModalOpen, setIsModalOpen] = React.useState(false);
-
+    
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -42,13 +36,15 @@ const EventCard: React.FC<EventCardProps> = ({ img, text, betAmount, state }) =>
         setIsModalOpen(false);
         setWhich('');
     };
+    const navigate = useNavigate();
+
     return (
         <>
-            <div className="h-[180px] overflow-hidden rounded-md p-2 hover:shadow-md  ">
+            <div className="h-[180px] overflow-hidden rounded-md p-2 shadow-[0_2px_12px_1px_rgba(0,0,0,0.1)] hover:shadow-md  ">
                 <Betting isOpen={isModalOpen} onClose={closeModal} which={which} img={img} text={text} />
                 <div>
                     <div className="flex px-2 gap-3">
-                        <img className="w-[50px] h-[50px]" src={img} alt="evetnImage" />
+                        <img className="w-[50px] h-[50px] rounded-md" src={img} alt="evetnImage" />
                         <p className="line-clamp-2 cursor-pointer text-gray-700 text-sm font-bold " onClick={() => { navigate('/event') }}>
                             {text}
                         </p>

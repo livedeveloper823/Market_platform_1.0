@@ -12,7 +12,6 @@ import MarketNavbar from "./MarketNavbar";
 import Logo from "./Logo";
 import { useSDK } from "@metamask/sdk-react";
 
-
 const TopNavbar = () => {
 
   const [isMarketOpen, setIsMarketOpen] = React.useState(false);
@@ -61,8 +60,9 @@ const TopNavbar = () => {
 
   const [account, setAccount] = React.useState<string>();
   const { sdk, connected, connecting, provider, chainId } = useSDK();
-  console.log(account, connected, connecting, provider, chainId);
 
+  console.log(account, connected, connecting, provider, chainId );
+  
 
   const connect = async () => {
     try {
@@ -72,7 +72,7 @@ const TopNavbar = () => {
       console.warn("failed to connect..", err);
     }
   };
-
+  
   return (
     <div className="fixed w-full z-30  bg-white top-0">
       <div className=" flex justify-between gap-2 items-center px-2 py-2">
@@ -104,7 +104,7 @@ const TopNavbar = () => {
               />
 
               {isMarketOpen && (
-                <div className="absolute right-[-140px] inline-block w-[380px] border px-2 items-center mt-2 pt-4 pb-2 bg-white rounded-md shadow-lg">
+                <div className="absolute right-[-140px] inline-block w-[400px] border px-2 items-center mt-2 pt-4 pb-2 bg-white rounded-md shadow-lg">
                   <MarketNavbar />
                 </div>
               )}
@@ -220,8 +220,8 @@ const TopNavbar = () => {
       < div style={{ scrollbarWidth: 'none' }} className="flex gap-2 px-2 overflow-x-scroll " >
         {
           content.menuBtns.map((item, index) =>
-            <div className=" ">
-              <Button text={item.text} key={index} value={item.value} onClick={() => handleCategory(`${item.value}`)}
+            <div key={index} className=" ">
+              <Button text={item.text} value={item.value} onClick={() => handleCategory(`${item.value}`)}
                 className={`${selectCategory === `${item.value}` ? 'border-b-2 border-black' : ''} rounded-none font-normal cursor-pointer p-2   text-black text-nowrap`}
               />
             </div>
