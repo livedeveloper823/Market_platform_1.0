@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "../components/Button/Button";
 import { TrendingUp } from "lucide-react";
-import SemiCircularProgressBar from "../components/feature/Circlar";
 
 import TopEventCard from "../components/cards/TopEventCard";
 import TopNavbar from "../components/TopNavbar";
