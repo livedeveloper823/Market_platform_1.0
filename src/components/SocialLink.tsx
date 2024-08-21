@@ -7,7 +7,7 @@ interface SocialLinkProps {
 const SocialLink: React.FC<SocialLinkProps> = ({ border }) => {
     return (
         <div className="flex gap-4 items-center">
-            <span className={`${border ? 'border-2 rounded-full h-14 w-14 p-2 ' : ''} [&>svg]:h-8 [&>svg]:w-8">`}>
+            <span className={`${border ? 'border rounded-full h-14 w-14 p-2 ' : ''} [&>svg]:h-8 [&>svg]:w-8">`}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -17,7 +17,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ border }) => {
                 </svg>
             </span>
 
-            <span className={`${border ? 'border-2 rounded-full h-14 w-14 p-2 ' : ''} [&>svg]:h-8 [&>svg]:w-8">`}>
+            <span className={`${border ? 'border rounded-full h-14 w-14 p-2 ' : ''} [&>svg]:h-8 [&>svg]:w-8">`}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -27,7 +27,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ border }) => {
                 </svg>
             </span>
 
-            <span className={`${border ? 'border-2 rounded-full h-14 w-14 p-2 ' : ''} [&>svg]:h-8 [&>svg]:w-8">`}>
+            <span className={`${border ? 'border rounded-full h-14 w-14 p-2 ' : ''} [&>svg]:h-8 [&>svg]:w-8">`}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -38,7 +38,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ border }) => {
             </span>
 
 
-            <span className={`${border ? 'border-2 rounded-full h-14 w-14 p-2 ' : ''} [&>svg]:h-8 [&>svg]:w-8">`}>
+            <span className={`${border ? 'border rounded-full h-14 w-14 p-2 ' : ''} [&>svg]:h-8 [&>svg]:w-8">`}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"

@@ -3,7 +3,7 @@ import { Tooltip } from '@material-tailwind/react'
 import { UserPropertyProps } from '../../types/profile';
 const UserProperty: React.FC<UserPropertyProps> = ({ avatar, username, address, position, volume }) => {
     return (
-        <Tooltip className="bg-white border-2 text-black z-50 rounded-lg" content={
+        <Tooltip className="bg-white border text-black z-50 rounded-lg" content={
             <div className=" ">
                 <div className="flex items-center py-1 mb-3 ">
                     <img width={48} className='rounded-md' src={avatar} />

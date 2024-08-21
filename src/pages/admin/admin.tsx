@@ -106,7 +106,7 @@ export default function Admin() {
             <TopNavbar />
             <div className="flex justify-center">
 
-                <div className="mt-36 flex w-full lg:px-[18vw] border-2 md:px-[12vw] sm:px-[4vw] gap-4">
+                <div className="mt-36 flex w-full lg:px-[18vw] border md:px-[12vw] sm:px-[4vw] gap-4">
                     <div className=" w-full ">
                         <div className="rounded-none">
                             <div className="flex mb-8 items-center justify-between gap-8">
@@ -135,7 +135,7 @@ export default function Admin() {
                                     </div>
                                 </Tabs>
 
-                                <div className="flex gap-2 border-2 rounded-full px-2 py-2">
+                                <div className="flex gap-2 border rounded-full px-2 py-2">
                                     <SearchIcon color="black" />
                                     <input type="text" className="w-full outline-none" placeholder="Search events" />
                                 </div>
@@ -228,7 +228,7 @@ export default function Admin() {
 
                         <div className="flex items-center justify-center border-t border-blue-gray-50 p-4">
                             <Button
-                                className="flex items-center gap-2 rounded-full border-2 p-2 hover:text-white hover:bg-gray-500 outline-none"
+                                className="flex items-center gap-2 rounded-full border p-2 hover:text-white hover:bg-gray-500 outline-none"
                                 onClick={prev}
                                 // disabled={pagination === 1}
                                 icon={<ArrowLeftIcon strokeWidth={2} className="h-4 w-4" />}
@@ -239,7 +239,7 @@ export default function Admin() {
                             </div>
                             <Button
 
-                                className="flex items-center gap-2 rounded-full border-2 p-2 hover:text-white hover:bg-gray-500 outline-none"
+                                className="flex items-center gap-2 rounded-full border p-2 hover:text-white hover:bg-gray-500 outline-none"
                                 onClick={next}
                                 // disabled={pagination === 5}
                                 icon={<ArrowRightIcon strokeWidth={2} className="h-4 w-4" />}

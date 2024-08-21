@@ -71,7 +71,7 @@ const SignInModal = ({ isOpen, onClose, title, connect }: ModalProps) => {
                 }}
             >
                 <div className="flex flex-col gap-2 ">
-                    <p className="text-center text-2xl font-bold">{title}</p>
+                    <p className="text-center text-2xl text-black font-bold">{title}</p>
                     <div className="cursor-pointer flex flex-row   bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg w-[100%] h-[80px]" onClick={() => googleSignIn()}>
                         <div className="flex items-center justify-center ml-2 my-auto w-[50px] h-[50px] bg-white rounded-lg">
                             <GoogleIcon />
@@ -88,7 +88,7 @@ const SignInModal = ({ isOpen, onClose, title, connect }: ModalProps) => {
                                 <div className="ml-2 font-bold text-black bg-gray-200 w-[30%] rounded-lg text-1xl flex items-center justify-center cursor-pointer hover:bg-green-500" onClick={() => handleClick()}>Continue</div>
                             </div>
                             <div className="flex gap-2 flex-row justify-between">
-                                <input type="text" className="w-full pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Email Name" onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
+                                <input type="text" className="w-full text-black pl-3 border border-gray-300 rounded-lg  py-2" placeholder="Email Name" onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
                             </div>
                             <input type="password" className="pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Password" onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
                         </div>

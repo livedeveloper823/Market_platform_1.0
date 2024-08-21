@@ -31,13 +31,14 @@ const YesNoBtn: React.FC<BtnProps> = () => {
     }, []);
     return (
         <div className='bg-white grid grid-cols-2 md:grid-flow-col w-full items-center gap-1 text-center justify-center px-1 '>
+
             <Button onClick={() => { convertColor(); }} className={`w-full  text-md font-semibold text-nowrap rounded-md py-3 ${!convertBgColor ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600'}`} text='Yes'></Button>
             <Button onClick={() => { convertColor(); }} className={`w-full text-md font-semibold text-nowrap rounded-md  py-3 ${convertBgColor ? 'bg-orange-600 text-white' : 'bg-gray-200 text-gray-600'}`} text='No '></Button>
 
-            <div className='relative w-10'>
+            <div className='md:flex lg:hidden relative w-10'>
                 <Button onClick={() => { toggleFooterMore() }} className={`lg:hidden sm:flex w-12 text-md font-semibold text-nowrap rounded-md  py-3 bg-gray-200 p-4  `} icon={<Ellipsis />}></Button>
                 {moreOpen === true && (
-                    <div className='absolute right-0 border-2 bottom-12 flex flex-col text-start w-44 bg-white z-20 mb-2 rounded-md px-2' ref={ref}>
+                    <div className='absolute right-0 border bottom-12 flex flex-col text-start w-44 bg-white z-20 mb-2 rounded-md px-2' ref={ref}>
                         <Button className={`w-full text-sm font-semibold text-nowrap rounded-md  py-2 `} text='Merge Shares'></Button>
                         <Button className={`w-full text-sm font-semibold text-nowrap rounded-md  py-2 `} text='Split Shares'></Button>
                         <Button className={`w-full text-sm font-semibold text-nowrap rounded-md  py-2 `} text='Remove Liquidity(AMM)'></Button>

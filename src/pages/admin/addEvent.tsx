@@ -33,8 +33,8 @@ const AddEvent = () => {
         <div className="h-screen overflow-hidden-scrollbar overflow-y-auto">
             <TopNavbar />
             <div className="flex mt-36 justify-center">
-                {/* <div className="lg:px-[18vw] md:px-[6vw] sm:px-8 px-4 w-full  flex-col  border-2 border-red-800 pt-8 pb-4 font-semibold"> */}
-                <div className='   '>
+                {/* <div className="lg:px-[18vw] md:px-[6vw] sm:px-8 px-4 w-full  flex-col  border border-red-800 pt-8 pb-4 font-semibold"> */}
+                <div className='  flex flex-col px-2 '>
                     <p className='flex pb-1 text-lg font-semibold text-gray-900 '>
                         Event Title
                     </p>
@@ -55,7 +55,6 @@ const AddEvent = () => {
                         type="number"
                         value={eventData.volume}
                         placeholder="Input title here ..."
-
                         onChange={(e) => setEventData({ ...eventData, volume: e.target.value })}
                         className="flex w-full py-2 h-full rounded-md shadow-sm ring-1  ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
                     />
@@ -69,6 +68,7 @@ const AddEvent = () => {
                         onChange={(e) => setEventData({ ...eventData, desc: e.target.value })}
                         className="flex w-full py-2 h-full rounded-md shadow-sm ring-1  ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md"
                     />
+
 
                     <label className='flex pb-1 text-lg font-semibold text-gray-900 '>
                         Avatar

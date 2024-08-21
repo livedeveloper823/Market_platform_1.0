@@ -3,7 +3,7 @@ import { StylesConfig } from "react-select";
 interface Option {
     value: string;
     label: string;
-    icon?: React.ReactNode;
+    icon?: React.FC;
 }
 
 export const customStyles: StylesConfig<Option> = {
