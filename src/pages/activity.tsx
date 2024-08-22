@@ -1,6 +1,6 @@
 import React from "react";
 import TopNavbar from "../components/TopNavbar";
-import ActivityListItem from "../components/items/ActivityListItem";
+import ActivityListItem from "../components/eventInfo/ActivityListItem";
 import { getUsersData } from "../store/reducers/users";
 import { dispatch } from "../store";
 import MobileFooter from "../components/MobileFooter";
@@ -14,7 +14,8 @@ const Acticity = () => {
         <div className="h-screen overflow-hidden-scrollbar overflow-y-auto">
             <TopNavbar />
             <div className="flex mt-36 justify-center ">
-                <div className="lg:px-[22vw]  sm:w-full sm:px-2  gap-2 justify-center">
+                <div className="flex w-[60rem] flex-col gap-4 ">
+                    {/* <div className="lg:px-[22vw]  sm:w-full sm:px-2  gap-2 justify-center"> */}
                     <ActivityListItem />
                 </div>
             </div>

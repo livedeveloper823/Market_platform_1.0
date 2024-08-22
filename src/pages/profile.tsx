@@ -33,8 +33,8 @@ const Profile = () => {
       <div className="flex mt-36 justify-center px-4 ">
         <div className="flex w-[60rem] flex-col gap-4 ">
           <div className="flex px-4 py-4 justify-between items-center text-black-700 " >
-            <div className="flex items-center gap-4">
-              <img width={64} className="rounded-full" src="https://d3lome5o0h180x.cloudfront.net/eyJidWNrZXQiOiJiYWNrYm9uZS1hc3NldHMtcHJkIiwia2V5IjoiQVNUXzQ5OTIzMi9BU1RfNDk5MjMyLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0IjoiY29udGFpbiJ9fX0=" alt="" />
+            <div className="lg:flex items-center gap-4">
+              <img width={120} className="rounded-full" src="https://d3lome5o0h180x.cloudfront.net/eyJidWNrZXQiOiJiYWNrYm9uZS1hc3NldHMtcHJkIiwia2V5IjoiQVNUXzQ5OTIzMi9BU1RfNDk5MjMyLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0IjoiY29udGFpbiJ9fX0=" alt="" />
               <div className="  ">
                 <div className="text-4xl pb-4 font-bold">{username}</div>
                 <div className="flex gap-6">
@@ -43,6 +43,7 @@ const Profile = () => {
                 </div>
               </div>
             </div>
+            
             <div className="items-center">
               <Button
                 text="Edit Profile"

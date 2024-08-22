@@ -9,10 +9,10 @@ const ProfileAcitiveListItem: React.FC = () => {
     <div className="flex w-full overflow-x-auto">
       <table className="w-full ">
         <tr className="uppercase   text-gray-300 px-2 lg:flex hidden ">
-          <th className="  w-12 ">Type</th>
+          <th className="w-12 ">Type</th>
           <div className="w-full px-8 justify-between flex">
-            <th className="  ">Market</th>
-            <th className="  ">Amount</th>
+            <th className="">Market</th>
+            <th className="">Amount</th>
           </div>
         </tr>
 

@@ -1,8 +1,8 @@
 import React from "react";
-import CommentListItem from "../items/CommentListItem";
-import ActivityListItem from "../items/ActivityListItem";
-import TopHolderListItem from "../items/TopHolderListItem";
-import RelatedListItem from "../items/RelatedListItem";
+import CommentListItem from "../eventInfo/CommentListItem";
+import ActivityListItem from "../eventInfo/ActivityListItem";
+import TopHolderListItem from "../eventInfo/TopHolderListItem";
+import RelatedListItem from "../eventInfo/RelatedListItem";
 import Button from "../Button/Button";
 
 const EventInfoList = () => {

@@ -7,14 +7,14 @@ import { MarketsIcon } from "../components/icons";
 // import { customStyles } from "../contents/selectStyle";
 // import { categoryItem } from "../contents/selectItem";
 import { getUsersData } from "../store/reducers/users";
-import { dispatch } from "../store";
 import { getAllEvents } from "../store/reducers/events";
 import Footer from "../components/Footer";
 import MobileFooter from "../components/MobileFooter";
-
+import { dispatch, useSelector } from "../store";
 import EventCard from "../components/event/EventCard";
-import { event } from "../contents/event";
+// import { event } from "../contents/event";
 import { content } from "../contents/landing";
+
 
 interface Option {
     label: string;
@@ -37,7 +37,7 @@ const Markets = () => {
     const [searchKey, setSearchKey] = React.useState < string > ('');
 
     const [selectedButton, setSelectedButton] = React.useState < string > ('top');
-
+    const eventData = useSelector((state) => state.events.events)
     const handleButtonClick = (value: string) => {
         setSelectedButton(value);
     };
@@ -66,7 +66,7 @@ const Markets = () => {
         <div className="h-screen overflow-hidden-scrollbar overflow-y-auto">
             <TopNavbar />
             <div className="mt-36">
-                <div style={{ scrollbarWidth: 'none' }} className=" my-4 md:flex-row flex flex-col md:overflow-y-scroll overflow-x-scroll md:gap-5 justify-center px-6 ">
+                <div style={{ scrollbarWidth: 'none' }} className=" my-4 md:flex-row flex flex-col md:overflow-y-scroll overflow-x-scroll md:gap-5 justify-center px-3">
                     {/* <div style={{ scrollbarWidth: 'none' }} className="  grid-cols-4 md:grid-cols-3 px-6 overflow-x-scroll my-4 "> */}
                     {/* <div className=" flex  overflow-x-scroll gap-3 px-4"> */}
                     <TopEventCard text="2024 Election Forecast" btn_text="View" onClick={() => { }} className="w-full flex bg-gradient-to-r from-blue-600 to-blue-200" img_url=" https://polymarket.com/_next/image?url=%2Fimages%2Ffeatured%2Fopen-ai.png&w=256&q=75 " />
@@ -76,8 +76,8 @@ const Markets = () => {
                     <TopEventCard text="Trade Elections" btn_text="Sign Up" onClick={() => { }} className="w-full flex bg-gradient-to-r from-orange-500 to-orange-400" img_url="https://polymarket.com/_next/image?url=%2Fimages%2Ffeatured%2Fhottest-record.png&w=256&q=75 " />
                 </div>
                 {/* SubBar */}
-                <div className="sticky top-[135px] bg-white drop-shadow-sm">
-                    <div className="  lg:flex sm:grid-cols-2 grid-cols-2 grid lg:items-center px-4 gap-2">
+                <div className="sticky top-[130px] bg-white drop-shadow-sm">
+                    <div className="  lg:flex sm:grid-cols-2 grid-cols-2 grid lg:items-center px-3 gap-2">
                         <div className="lg:order-1 sm:order-3 order-3 p-2 border justify-center items-center gap-2 rounded-md flex cursor-pointer hover:bg-slate-100" onClick={() => { }}>
                             <ListFilter size={24} />
                             <p className="sm:visible lg:hidden">Filters</p>
@@ -97,7 +97,7 @@ const Markets = () => {
                                     {isDropdownOpen ? <ChevronUp /> : <ChevronDown />}
                                 </div>
                                 {isOpen && (
-                                    <div className="absolute z-10 w-full rounded-md  bg-white ">
+                                    <div className="absolute z-30 w-full rounded-md border bg-white ">
                                         {options.map((option) => (
                                             <div key={option.value} className="flex p-2 gap-2 items-center cursor-pointer" onClick={() => handleOptionClick(option)}>
                                                 <p className="bg-blue-50 p-1 rounded-md">{option.icon}</p>
@@ -108,7 +108,6 @@ const Markets = () => {
                                 )}
                             </div>
                             {/* {selected.label} */}
-
                         </div>
 
                         <div className="lg:order-4 lg:flex sm:hidden hidden border rounded-md">
@@ -120,7 +119,7 @@ const Markets = () => {
                         </div>
                     </div>
                     {/* Filters */}
-                    <div style={{ scrollbarWidth: 'none' }} className="flex overflow-x-scroll w-full gap-2 px-4 py-3">
+                    <div style={{ scrollbarWidth: 'none' }} className="flex overflow-x-scroll w-full gap-2 px-3 py-3">
                         <div className="flex items-center gap-2">
                             <Button
                                 text="Top"
@@ -144,17 +143,18 @@ const Markets = () => {
                 {/* Events */}
 
                 <div className="mt-4 gap-2 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 px-2 ">
-                    {event.eventList
-                        .filter((key) => key.content.toLowerCase().includes(searchKey.toLowerCase())) // Filter by searchKey
+                    {eventData
+                        .filter((key) => key.eventName.toLowerCase().includes(searchKey.toLowerCase())) // Filter by searchKey
                         // .filter((key) => key.content.toLowerCase().includes(selectedButton.toLowerCase())) // Filter by selectedButton
                         .map((key, index) => (
                             <EventCard
                                 key={index}
+                                startDate={key.startDate}
+                                endDate={key.endDate}
                                 img={key.img}
-                                text={key.content}
-                                state={key.state}
-                                percentage={key.percentage}
-                                betAmount={key.betAmount}
+                                state={1}
+                                eventName={key.eventName}
+                                volume={key.volume}
                             />
                         ))
                     }
