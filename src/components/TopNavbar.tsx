@@ -53,6 +53,8 @@ const TopNavbar = () => {
     navigate('/');
     logout()
   }
+  
+  
   const [account, setAccount] = React.useState<string>();
   const { sdk, connected, connecting, provider, chainId } = useSDK();
 
