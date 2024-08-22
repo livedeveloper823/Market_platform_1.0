@@ -9,7 +9,7 @@ interface BettingProps {
     isOpen: boolean;
     onClose: () => void;
     which: string | undefined;
-    img: string,
+    img?: string,
     text: string
 }
 const Betting: React.FC<BettingProps> = ({ isOpen, onClose, which, img, text }) => {
@@ -29,10 +29,10 @@ const Betting: React.FC<BettingProps> = ({ isOpen, onClose, which, img, text }) 
 
     return (
 
-        <div className=" ">
-            <div className="h-[36px] justify-between items-center flex py-4 gap-8">
+        <div className=" h-[180px] flex flex-col gap-2 ">
+            <div className="h-[38px] justify-between items-center flex gap-8">
                 <SignInModal isOpen={inOpen} onClose={handleInClick} title="Sign In" />
-                <img className="w-[20px] h-[20px]" src={img} alt="" />
+                <img className=" rounded-md " width={45} src={img} alt="" />
                 <p className="line-clamp-1 cursor-pointer text-gray-700 text-base font-bold " onClick={() => { navigate('/event') }}>
                     {text}
                 </p>
@@ -41,7 +41,7 @@ const Betting: React.FC<BettingProps> = ({ isOpen, onClose, which, img, text }) 
                 </div>
             </div>
 
-            <div className="flex h-[100px] items-center py-4 gap-2">
+            <div className="flex h-[80px] items-center gap-2">
                 <div className="flex w-full border rounded-md items-center py-2 px-1 justify-between gap-2  ">
                     <input
                         className="w-12 items-center text-center"
@@ -50,13 +50,13 @@ const Betting: React.FC<BettingProps> = ({ isOpen, onClose, which, img, text }) 
                         onChange={handleInputChange}
                     />
                     <div className="gap-1 items-center flex">
-                        <Button text={+1}
-                            className="text-lg font-medium text-gray-400 px-2 py-0 bg-gray-200 rounded-md cursor-pointer"
+                        <Button text={"+1"}
+                            className="text-sm font-medium text-gray-400 px-1 py-0.5 bg-gray-200 rounded-md cursor-pointer"
                             onClick={() => setBetPrice(prevNumber => Math.max(prevNumber + 1, 0))}
                         />
 
-                        <Button text={+10}
-                            className="text-lg font-medium text-gray-400 px-1 py-0 bg-gray-200 rounded-md cursor-pointer"
+                        <Button text={"+10"}
+                            className="text-sm font-medium text-gray-400 px-1 py-1  bg-gray-200 rounded-md cursor-pointer"
                             onClick={() => setBetPrice(prevNumber => Math.max(prevNumber + 10, 0))}
                         />
                     </div>

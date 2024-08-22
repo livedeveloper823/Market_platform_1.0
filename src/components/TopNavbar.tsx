@@ -16,7 +16,7 @@ const TopNavbar = () => {
 
   const [isMarketOpen, setIsMarketOpen] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [selectCategory, setSelectedButton] = React.useState<string>('');
+  const [selectCategory, setSelectedButton] = React.useState < string > ('');
 
   const toggleMarket = () => {
     setIsMarketOpen(!isMarketOpen);
@@ -53,17 +53,11 @@ const TopNavbar = () => {
     navigate('/');
     logout()
   }
-
-  React.useEffect(() => {
-    dispatch(getUserData())
-  }, [])
-
   const [account, setAccount] = React.useState<string>();
   const { sdk, connected, connecting, provider, chainId } = useSDK();
 
   console.log(account, connected, connecting, provider, chainId );
   
-
   const connect = async () => {
     try {
       const accounts = await sdk?.connect();
@@ -72,7 +66,11 @@ const TopNavbar = () => {
       console.warn("failed to connect..", err);
     }
   };
-  
+
+  React.useEffect(() => {
+    dispatch(getUserData())
+  }, [])
+
   return (
     <div className="fixed w-full z-30  bg-white top-0">
       <div className=" flex justify-between gap-2 items-center px-2 py-2">
@@ -84,7 +82,7 @@ const TopNavbar = () => {
             <Logo color="text-fuchsia-900" />
           </div>
 
-          <div className="lg:visible lg:flex lg:w-full md:w-72 sm:hidden hidden px-4 py-2 gap-2 items-center hover:border-black border border-gray-700 rounded-lg">
+          <div className="lg:visible lg:flex lg:w-full md:w-72 sm:hidden hidden px-4 py-2 gap-2 items-center border border-gray-200  focus-within:border-black rounded-lg">
             <SearchIcon color="black" size={18} />
             <input type="text" className="w-full outline-none" placeholder="Search markets" />
           </div>
@@ -166,7 +164,7 @@ const TopNavbar = () => {
                         )}
                         <Button onClick={() => navigate("/learn")} className="w-full font-medium cursor-pointer flex gap-3 text-base py-2 hover:bg-gray-200 rounded-md  px-2 items-center text-nowrap" text="Learn" />
                         <Button onClick={() => navigate("/docs")} className="w-full font-medium cursor-pointer flex gap-3 text-base py-2 hover:bg-gray-200 rounded-md  px-2 items-center text-nowrap" text="Documentation" />
-                        <div className="flex items-center">
+                        <div className="flex p-2  font-medium  items-center">
                           <div>
                             <p color="blue-gray" className="font-medium cursor-pointer text-nowrap text-sm">
                               Dark Mode
@@ -234,3 +232,4 @@ const TopNavbar = () => {
 }
 
 export default TopNavbar;
+

@@ -5,7 +5,8 @@ import instance from "../../utils/axios";
 
 const initialState: eventsStateProps = {
     error: null,
-    events: []
+    events: [],
+    event:null,
 }
 
 const events = createSlice({
@@ -20,6 +21,9 @@ const events = createSlice({
         },
         addEventData(state, action) {
             state.events = action.payload
+        },
+        getEventInfo(state, action) {
+            state.event = action.payload
         }
     }
 })
@@ -36,7 +40,20 @@ export const getAllEvents = () => {
     }
 }
 
-export const addEvent = (eventData: { title: string; volume: string; desc: string; startDate: Date; endDate: number; avatar: string; }) => {
+
+export const getEventInfo = (pageId: string | null) => {
+    return async () => {
+        try {
+            console.log("ddddddddddddddddddddd", pageId)
+            const response = await instance.get(`/events/eventInfo/${pageId}`)
+            dispatch(events.actions.getEventInfo(response.data.data.event))
+        } catch (error) {
+            dispatch(events.actions.hasError(error))
+        }
+    }
+}
+
+export const addEvent = (eventData: { category: string; eventName: string; volume: string; desc: string; startDate: string; endDate: string; avatar: string; marketName: string; marketDesc: string; }) => {
     return async () => {
         try {
             const response = await instance.post("/events/add", eventData)

@@ -14,9 +14,9 @@ export interface IconProps {
     color?: string;
 }
 export interface ModalProps {
+    title: string;
     isOpen: boolean;
     onClose: () => void;
-    title: string;
     connect?: () => void;
 }
 
@@ -34,19 +34,21 @@ export interface MyPropertyProps {
     value: number,
 }
 
-export interface SubContentProps {
-    title: string,
+export interface MarketProps {
+    marketName: string,
     url?: string,
     img_url?: string,
     percent: string,
 }
 export interface EventProps {
-    title: string,
-    img_url: string,
-    total_bet: number,
+    eventName: string,
+    img: string,
+    desc: string,
+    volume: number,
     url?: string,
-    event_date?: Date,
-    subcontent: SubContentProps[],
+    startDate?: Date | undefined,
+    endDate?: Date | undefined,
+    market: MarketProps[],
 }
 // Auth types
 export interface UserProfileProps {
@@ -76,7 +78,7 @@ export type JWTContextType = {
     logout: () => void;
     login: (email: string, password: string) => Promise<void>;
     register: (email: string, password: string, username: string,) => Promise<void>;
- 
+
     // addEvent: ();
     resetPassword?: (email: string) => Promise<void>;
     updateProfile?: VoidFunction;
