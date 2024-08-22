@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../../components/Button/Button'
-// import Datepicker from 'react-tailwindcss-datepicker'
+import Datepicker from 'react-tailwindcss-datepicker'
 import { CloudUpload, } from 'lucide-react'
 import Select from 'react-select'
 import TopNavbar from '../../components/TopNavbar'
@@ -8,6 +8,8 @@ import useNotification from '../../hooks/useNotification'
 import { useNavigate } from 'react-router-dom'
 import { dispatch } from '../../store'
 import { addEvent } from '../../store/reducers/events'
+
+import { DateValue, handleDateValue } from '../../types/datePicker'
 
 
 const AddEvent = () => {
@@ -17,18 +19,23 @@ const AddEvent = () => {
     // const [selectedOption, setSelectedOption] = React.useState < string > ('')
     const [isMulti, setIsMulti] = React.useState < boolean > (false)
 
+    const [dateValue, setDateValue] = React.useState < DateValue > ({ startDate: null, endDate: null });
     const [eventData, setEventData] = React.useState({
         category: "",
         eventName: "",
         volume: "",
         desc: "",
-        startDate: "",
-        endDate: "",
+        startDate: dateValue.startDate,
+        endDate: dateValue.endDate,
         avatar: "",
         marketName: "",
         marketDesc: "",
     })
 
+    const handleValueChange = (newValue: handleDateValue) => {
+        alert(newValue.startDate);
+        setDateValue(newValue);
+    };
     const options = [
         { value: 'politics', label: 'Politics' },
         { value: 'crypto', label: 'Crypto' },
@@ -41,13 +48,14 @@ const AddEvent = () => {
     const handleApplyEvent = () => {
         if (!eventData.eventName || !eventData.volume || !eventData.desc) {
             showNotification("Incorrect Input Data!", "error")
+
         } else {
             dispatch(addEvent(eventData))
             console.log(eventData)
             showNotification("Successfully!", "success")
         }
     }
-    {/* <div className="lg:px-[18vw] md:px-[6vw] sm:px-8 px-4 w-full  flex-col  border border-red-800 pt-8 pb-4 font-semibold"> */ }
+    {/* <div className="lg:px-[18vw] md :px-[6vw] sm:px-8 px-4 w-full  flex-col  border border-red-800 pt-8 pb-4 font-semibold"> */ }
     return (
         <div className="h-screen overflow-hidden-scrollbar overflow-y-auto bg-blue-200">
             <TopNavbar />
@@ -83,8 +91,6 @@ const AddEvent = () => {
                                 }}
                                 value={eventData.category ? options.find(option => option.value === eventData.category) : null}
                             />
-                            The error message TS18047: 'option' is possibly 'null' indicates that TypeScript is warning you that the option variable might be null when you try to access its properties. This can happen if the onChange function receives a null value (for example, when the user clears the selection).
-                            To fix this error, you can add a null check before accessing the label property of option. Here’s how you can modify your code:
 
                         </div>
                     </div>
@@ -110,7 +116,8 @@ const AddEvent = () => {
                                     Betting Period
                                 </p>
                                 <div className="border-gray-600 rounded-md border">
-                                    dddddddddddddddddddd
+                                    {/* <Datepicker value={dateValue} onChange={() => handleValueChange} /> */}
+                                    <Datepicker value={dateValue} onChange={ () => handleValueChange  } />
                                 </div>
                             </div>
 
@@ -151,7 +158,9 @@ const AddEvent = () => {
 
                         </div>
                     </div>
-                    {/* <Datepicker value={value} onChange={newValue => setValue(newValue)} /> */}
+
+                    {/* {value.startDate}
+                    {value.endDate} */}
                     <label className='flex pb-1 font-semibold text-gray-900 '>
                         Single Events
                     </label>

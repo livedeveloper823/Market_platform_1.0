@@ -7,6 +7,7 @@ import Betting from "./Betting";
 import { ChevronsUp, ChevronsDown, Gift, MessageCircle, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 interface EventCardProps {
+    tid: number,
     startDate?: Date | undefined,
     endDate?: Date | undefined,
     img?: string,
@@ -15,7 +16,7 @@ interface EventCardProps {
     volume: number,
 }
 
-const EventCard: React.FC<EventCardProps> = ({ img, eventName, volume, state }) => {
+const EventCard: React.FC<EventCardProps> = ({ tid, img, eventName, volume, state }) => {
 
     const [isYesHovered, setIsYesHovered] = React.useState < number | null > (null);
     const [which, setWhich] = React.useState < string > ()
@@ -58,8 +59,8 @@ const EventCard: React.FC<EventCardProps> = ({ img, eventName, volume, state }) 
                     <div className="flex px-2 justify-between items-center">
                         <div className="flex gap-2">
                             <img className="w-[50px] h-[50px] rounded-md" src={img} alt="evetnImage" />
-                            <p className="line-clamp-2 cursor-pointer text-gray-700 text-sm font-bold " onClick={() => { navigate(`/event`) }}>
-                                {/* <p className="line-clamp-2 cursor-pointer text-gray-700 text-sm font-bold " onClick={() => { navigate(`/event/${eventName}&id=${id}`) }}> */}
+                            {/* <p className="line-clamp-2 cursor-pointer text-gray-700 text-sm font-bold " onClick={() => { navigate(`/event`) }}> */}
+                            <p className="line-clamp-2 cursor-pointer text-gray-700 text-sm font-bold " onClick={() => { navigate(`/event/${eventName}&tid=${tid}`) }}>
                                 {eventName}
                             </p>
                         </div>

@@ -145,12 +145,12 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
                             <Button onClick={() => { }} className="w-full text-center bg-blue-600  text-white px-4 py-2 text-lg font-semibold rounded-md" text="Log In" />
                         </div>
                         <div className="">
-                            <div className="flex justify-between px-3 ">
+                            <div className="flex justify-between px-1">
                                 <p>Avg price</p>
                                 <p className="border-dotted border-b-2 text-indigo-600 ">{number} ¢</p>
                             </div>
 
-                            <div className="flex justify-between px-3 ">
+                            <div className="flex justify-between px-1">
                                 <p>Est. amount received</p>
                                 <p className=" ">${number}</p>
                             </div>
@@ -174,17 +174,17 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
                         </div>
 
                         <div className=" ">
-                            <div className="flex justify-between px-3 ">
+                            <div className="flex justify-between px-1">
                                 <p>Avg price</p>
                                 <p className="border-dotted border-b-2 text-indigo-600 ">{number} ¢</p>
                             </div>
 
-                            <div className="flex justify-between px-3 ">
+                            <div className="flex justify-between px-1">
                                 <p>Shares</p>
                                 <p className=" ">{number} ¢</p>
                             </div>
 
-                            <div className="flex justify-between px-3 ">
+                            <div className="flex justify-between px-1">
                                 <p className="text-nowrap">Potential return</p>
                                 <p className="text-green-500 ">
                                     ${number}({number / 100}%)</p>

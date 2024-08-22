@@ -73,7 +73,7 @@ const App = () => {
                         // .filter((key) => key.content.toLowerCase().includes(selectedButton.toLowerCase())) // Filter by selectedButton
                         .map((key, index) => (
                             <EventCard
-                                // id={key._id}
+                                tid={key.id}
                                 key={index}
                                 startDate={key.startDate}
                                 endDate={key.endDate}

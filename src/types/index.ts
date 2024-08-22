@@ -41,6 +41,8 @@ export interface MarketProps {
     percent: string,
 }
 export interface EventProps {
+    id: number;
+    tid: number;
     eventName: string,
     img: string,
     desc: string,

@@ -6,7 +6,7 @@ import instance from "../../utils/axios";
 const initialState: eventsStateProps = {
     error: null,
     events: [],
-    event:null,
+    event: null,
 }
 
 const events = createSlice({
@@ -53,16 +53,16 @@ export const getEventInfo = (pageId: string | null) => {
     }
 }
 
-export const addEvent = (eventData: { category: string; eventName: string; volume: string; desc: string; startDate: string; endDate: string; avatar: string; marketName: string; marketDesc: string; }) => {
+export function addEvent(eventData: { category: string; eventName: string; volume: string; desc: string; startDate: Date|null; endDate: Date|null; avatar: string; marketName: string; marketDesc: string; }) {
     return async () => {
         try {
-            const response = await instance.post("/events/add", eventData)
-            dispatch(events.actions.addEventData(response.data.data.eventData))
-            console.log("==55555555555>>>", eventData)
+            const response = await instance.post("/events/add", eventData);
+            dispatch(events.actions.addEventData(response.data.data.eventData));
+            console.log("==55555555555>>>", eventData);
         } catch (error) {
-            dispatch(events.actions.hasError(error))
+            dispatch(events.actions.hasError(error));
         }
-    }
+    };
 }
 
 export default events.reducer;
