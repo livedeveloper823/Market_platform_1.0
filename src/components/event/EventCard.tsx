@@ -7,7 +7,7 @@ import Betting from "./Betting";
 import { ChevronsUp, ChevronsDown, Gift, MessageCircle, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 interface EventCardProps {
-    tid: number,
+    tid?: number,
     startDate?: Date | undefined,
     endDate?: Date | undefined,
     img?: string,

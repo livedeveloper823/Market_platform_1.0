@@ -63,7 +63,9 @@ const TopNavbar = () => {
   const connect = async () => {
     try {
       const accounts = await sdk?.connect();
-      setAccount(accounts?.[0]);
+      if (accounts && Array.isArray(accounts)) {
+        setAccount(accounts[0]);
+      }
     } catch (err) {
       console.warn("failed to connect..", err);
     }
