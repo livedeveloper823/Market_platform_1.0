@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const baseURL = 'https://backend-market-platform.onrender.com/';
+const baseURL = 'https://backend-market-platform.onrender.com/api/v1';
 
 export const instance = axios.create({ baseURL });
 
