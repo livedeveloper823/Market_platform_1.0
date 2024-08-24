@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const baseURL = 'http://localhost:5000/api/v1';
+const baseURL = 'https://backend-market-platform.onrender.com/';
 
 export const instance = axios.create({ baseURL });
 
