@@ -4,18 +4,19 @@ import { Tooltip } from "@material-tailwind/react";
 import { Check } from "lucide-react";
 import EventInfoList from "../components/event/EventInfoList";
 import EventInfoCard from "../components/event/EventInfoCard";
-import TopNavbar from "../components/TopNavbar";
+import TopNavbar from "../components/layouts/TopNavbar";
 
 import { Trophy, Clock4, Star, Link, ChevronUp, ChevronDown, ChevronsLeftRight, Goal, } from "lucide-react";
 import { getUsersData } from "../store/reducers/users";
 import { getEventInfo } from "../store/reducers/events";
 
-import { dispatch } from "../store";
+import { dispatch, useSelector } from "../store";
 import YesNoBtn from "../components/YesNoBtn";
-import Logo from "../components/Logo";
-import MobileFooter from "../components/MobileFooter";
+import Logo from "../components/layouts/Logo";
+import MobileFooter from "../components/layouts/MobileFooter";
 
-const Profile = () => {
+const EventInfo = () => {
+  const eventIfo = useSelector((state) => state.events.event)
   const [isVisible, setIsVisible] = React.useState < boolean > (false);
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
@@ -23,54 +24,58 @@ const Profile = () => {
   const [pageId, setPageId] = React.useState < string | null > (null)
 
   React.useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search)
-    console.log(queryParams)
-    setPageId(queryParams.get('id'))
-    alert(pageId)
-    if (pageId != null) {
+    const regex = /[?&]tid=([^&#]*)/;
+    const match = (window.location.search).match(regex);
+    const tidValue = match ? match[1] : null;
+    // const pageURL = tidValue ? tidValue.replace(/ /g, '-') : null;
+    setPageId(tidValue);
+    if (pageId !== null) {
       dispatch(getUsersData());
       dispatch(getEventInfo(pageId));
     }
   }, [pageId]);
 
   return (
-    <div className="h-screen overflow-hidden-scrollbar overflow-y-auto">
+    <div className="bg-bgColor h-screen overflow-hidden-scrollbar overflow-y-auto">
       <TopNavbar />
-      <div className="flex mt-36 justify-center">
-        <div className="flex w-[62rem] flex-col gap-4 ">
+      <div className="flex mt-36 justify-center dark:bg-darkBg">
+        <div className="flex w-[72rem] flex-col gap-4 ">
           <div className=" flex  md:w-full gap-4">
-            <div className="lg:w-[44rem] md:w-full w-full py-4">
+            <div className="lg:w-[50rem] md:w-full w-full py-4">
 
-              <div className="flex items-center gap-4 px-2 py-1  text-black-700">
-                <img className=" rounded-md" width={68} src="https://d3lome5o0h180x.cloudfront.net/eyJidWNrZXQiOiJiYWNrYm9uZS1hc3NldHMtcHJkIiwia2V5IjoiQVNUXzQ5OTIzMi9BU1RfNDk5MjMyLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0IjoiY29udGFpbiJ9fX0=" alt="userAvatar" />
-                <div className="w-full ">
-                  <div className="flex w-full justify-between gap-3">
+              <div className="flex gap-4 text-black-700">
+                <div className="items-center">
+                  <img className=" w-24 h-20 rounded-md" src={eventIfo?.avatar} alt="userAvatar" />
+                </div>
+                <div className="flex w-full flex-col">
+                  <div className="flex w-full justify-between ">
                     <div className="gap-3 flex">
                       <div className="flex gap-2">
-                        <Tooltip placement="bottom" className="bg-white border border-gray-300" content={
-                          <div className="bg-white w-[16rem] px-2  ">
-                            <p className="text-lg  text-black font-normal  indent-4 pb-1">
-                              Winner take all
-                            </p>
-                            <div className=" py-1">
-                              <ul className="flex flex-col">
-                                <li className="flex items-center gap-4">
-                                  <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                                    <Check className="text-blue-800" />
-                                  </span>
-                                  <p className="font-normal text-black text-sm"> Only 1 winner</p>
-                                </li>
-                                <li className="flex items-center gap-4">
-                                  <span className="rounded-full border border-white/20 bg-white/20 p-1">
-                                    <Check className="text-blue-800" />
-                                  </span>
-                                  <p className="font-normal text-black text-sm">Supports negative-risk (convert No shares to Yes of the other options)</p>
-                                </li>
-                              </ul>
+                        <Tooltip placement="bottom" className="bg-bgColor border border-gray-300"
+                          content={
+                            <div className="bg-bgColor text-textColor w-[16rem] px-2  ">
+                              <p className="text-lg  font-normal  indent-4 pb-1">
+                                Winner take all
+                              </p>
+                              <div className=" py-1">
+                                <ul className="flex flex-col">
+                                  <li className="flex items-center gap-2">
+                                    <span className="rounded-full bg-bgColor p-1">
+                                      <Check className="text-blue-500" />
+                                    </span>
+                                    <p className="font-normal text-sm"> Only 1 winner</p>
+                                  </li>
+                                  <li className="flex items-center gap-2">
+                                    <span className="rounded-full bg-bgColor p-1">
+                                      <Check className="text-blue-500" />
+                                    </span>
+                                    <p className="font-normal text-sm">Supports negative-risk (convert No shares to Yes of the other options)</p>
+                                  </li>
+                                </ul>
+                              </div>
                             </div>
-                          </div>
-                        }>
-                          <Trophy className=" bg-gray-200 p-1 rounded-md" />
+                          }>
+                          <Trophy className="text-gray-500 p-1 rounded-md" />
                         </Tooltip>
                         <p className="text-gray-500 ">$4000 Bet</p>
 
@@ -82,20 +87,19 @@ const Profile = () => {
                         <p className="text-gray-500 ">Nov 5, 2024</p>
                       </div>
                     </div>
-                    <div className="flex scale-75 gap-2 cursor-pointer">
-                      <Tooltip className="bg-gray-700 text-white px-2 py-1 rounded shadow" content="Add to watchlist">
+                    <div className="flex scale-75 gap-2 text-textColor cursor-pointer">
+                      <Tooltip className="px-2 py-1 rounded shadow" content="Add to watchlist">
                         <Star />
                       </Tooltip>
-                      <Tooltip className="bg-gray-700 text-white px-2 py-1 rounded shadow" content="Embed" >
+                      <Tooltip className="px-2 py-1 rounded shadow" content="Embed" >
                         <ChevronsLeftRight className="lg:flex sm:hidden" />
                       </Tooltip>
 
                       <Tooltip placement="bottom" className="bg-white border border-gray-300" content={
                         <>
+                          <p className="text-lg text-textColor font-normal indent-4">  Copy Link</p>
 
-                          <p className="text-lg text-black font-normal indent-4">  Copy Link</p>
-
-                          <div className=" text-black py-1">
+                          <div className=" text-textColor py-1">
                             <ul className="flex flex-col gap-2">
                               <li className="flex items-center gap-4">
                                 <p className="font-normal text-sm"> Q3</p>
@@ -119,8 +123,10 @@ const Profile = () => {
                     </div>
                   </div>
 
-                  <div className="flex w-full justify-between">
-                    <div className="sm:w-full text-2xl  font-bold">How many named storms during Atlantic Hurricane Season?</div>
+                  <div className="flex w-full items-center justify-between">
+                    <div className="sm:w-full text-2xl text-textColor font-bold">
+                      {eventIfo?.eventName}
+                    </div>
 
                     <div className="md:px-16 lg:flex sm:hidden hidden opacity-30">
                       <Logo />
@@ -129,40 +135,39 @@ const Profile = () => {
                 </div>
               </div>
 
-
               <div className="py-4">
-                <h2 className="px-2 text-lg border-b-2 font-medium">Rules</h2>
-                <div className="p-4">
-                  <div className={`${!isVisible ? 'line-clamp-1' : ''} indent-3 font-normal`}>
-                    This is the initial content that is always visible.This is the initial content that is always visiblehis is the initial content that is always visible.This is the initial content that is always visibl. ehis is the initial content that is always visible.This is the initial content that is always visiblehis is the initial content that is always visible.This is the initial content that is always visiblehis is the initial content that is always visible.This is the initial content that is always visible
+                <h2 className="text-xl border-b font-medium text-textColor">Rules</h2>
+                <div className="flex flex-col mt-3 gap-4">
+                  <div className={`${!isVisible ? 'line-clamp-1' : ''} indent-3 text-textColor font-normal`}>
+                    {eventIfo?.desc}
                   </div>
 
                   {isVisible &&
                     <div className=" py-2">
                       <div className="flex items-center border  px-4 py-1 mb-3  rounded-lg">
                         <Goal size={32} className="bg-gray-300 p-1 rounded-full" />
-                        <div className="flex font-semibold flex-col ">
+                        <div className="flex font-semibold flex-col text-textColor ">
                           <p className="px-4">Resolver</p>
                           <p className="px-4">0x11111111111111</p>
                         </div>
                       </div>
 
                       <Button text="Propose resolution"
-                        className="flex gap-2 border bg-white text-gray-600 border-gray-500 px-3  py-2 rounded-full "
+                        className="flex w-40 gap-2 border text-textColor border-gray-500 px-2 py-1 text-center rounded-full "
                       />
                     </div>
                   }
                 </div>
 
-                <div onClick={toggleVisibility} className={`flex w-28 gap-1 text-nowrap text-sm items-center px-2 py-1 outline-none hover:bg-gray-200 bg-white  text-black p-1 rounded-full cursor-pointer`}>
-                  <p>{isVisible ? "Show Less" : "Show More"}</p>
+                <div onClick={toggleVisibility} className={`flex w-32 gap-1 text-nowrap text-sm items-center px-2 py-1 bg-cardBg text-textColor rounded-full cursor-pointer`}>
+                  <p className="px-2">{isVisible ? "Show Less" : "Show More"}</p>
                   {isVisible ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </div>
               </div>
               <EventInfoList />
             </div>
 
-            <div className="lg:block hidden">
+            <div className="lg:block hidden ">
               <EventInfoCard />
             </div>
           </div >
@@ -176,4 +181,4 @@ const Profile = () => {
   );
 };
 
-export default Profile; 
+export default EventInfo; 

@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../components/Button/Button";
-import TopNavbar from "../components/TopNavbar";
+import TopNavbar from "../components/layouts/TopNavbar";
 // import Button from "../components/Button";
 import { CameraIcon, Megaphone, Save, UserCog } from "lucide-react";
 
@@ -10,6 +10,7 @@ import { dispatch, useSelector } from "../store";
 const Setting = () => {
   // Getting Data
   const email = useSelector((state) => state.userInfo.user.email)
+  const username = useSelector((state) => state.userInfo.user.username)
 
   const [isProfile, setIsProfile] = React.useState < boolean > (true);
 
@@ -18,6 +19,8 @@ const Setting = () => {
   const handleChange = () => {
     setIsChecked(!isChecked);
   };
+
+
   React.useEffect(() => {
     dispatch(getUsersData());
   }, []);
@@ -32,6 +35,13 @@ const Setting = () => {
             src="https://d3lome5o0h180x.cloudfront.net/eyJidWNrZXQiOiJiYWNrYm9uZS1hc3NldHMtcHJkIiwia2V5IjoiQVNUXzQ5OTIzMi9BU1RfNDk5MjMyLmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6MzAwLCJoZWlnaHQiOjMwMCwiZml0IjoiY29udGFpbiJ9fX0="
             alt=""
           />
+
+          {/* <div
+            className={` flex items-center justify-center w-20 h-20 bg-cover rounded-md border  border-green-300  ${!backgroundImage ? 'bg-green-200' : ''}`}
+            style={{
+              backgroundImage: `url(${backgroundImage || ''})`,
+            }}
+          > */}
           <Button
             text="Upload"
             icon={<CameraIcon size={18} />}
@@ -49,20 +59,20 @@ const Setting = () => {
           Last Name
         </label>
 
-        <input type="text" onChange={() => { }} className="border py-2 rounded-lg focus:border-black text-base" />
+        <input type="text" value={username} onChange={() => { }} className="border p-2 rounded-lg focus:border-black text-base" />
 
         <label className="flex py-2 text-base font-semibold text-gray-900 ">
           Desc
         </label>
-        <textarea placeholder="Bio" className="rounded-lg p-4 focus:border-black text-base"></textarea>
+        <textarea placeholder="Bio" className="border rounded-lg p-2 text-base"></textarea>
 
         <div className="flex pl-8 pt-4">
           <Button
-            text="Save Change"
+            text="Save"
             icon={<Save size={20} />}
             value="saveChange"
             onClick={() => { alert('save') }}
-            className="flex font-semibold items-center gap-2 px-2 py-2 bg-blue-500 cursor-pointer  hover:bg-gray-400 rounded-lg"
+            className="flex font-semibold items-center gap-1 px-2 py-1 bg-blue-500 text-white cursor-pointer  hover:bg-gray-400 rounded-lg"
           />
         </div>
       </div >
@@ -90,7 +100,8 @@ const Setting = () => {
     <div className="h-screen overflow-hidden-scrollbar overflow-y-auto">
       <TopNavbar />
       <div className="flex mt-36  justify-center">
-        <div className="flex sm:w-full sm:px-4 md:w-full lg:w-full xl:w-[48vw] w-full py-8">
+        <div className="flex w-[60rem] gap-4 ">
+          {/* <div className="flex sm:w-full sm:px-4 md:w-full lg:w-full xl:w-[48vw] w-full py-8"> */}
           <div className=" text-lg">
             <Button
               text="Profile"

@@ -1,4 +1,4 @@
-import TopNavbar from "../components/TopNavbar";
+import TopNavbar from "../components/layouts/TopNavbar";
 const WatchList = () => {
     return (
         <div className="h-screen overflow-hidden-scrollbar overflow-y-auto">

@@ -35,22 +35,22 @@ export interface MyPropertyProps {
 }
 
 export interface MarketProps {
+    marketDesc?: string
     marketName: string,
     url?: string,
     img_url?: string,
-    percent: string,
 }
 export interface EventProps {
-    id: number;
-    tid: number;
-    eventName: string,
-    img: string,
-    desc: string,
-    volume: number,
+    _id?: number;
+    category?: string,
+    eventName?: string | undefined,
+    avatar?: string,
+    desc?: string,
+    volume?: number,
     url?: string,
     startDate?: Date | undefined,
     endDate?: Date | undefined,
-    market: MarketProps[],
+    markets?: MarketProps[],
 }
 // Auth types
 export interface UserProfileProps {
@@ -80,8 +80,6 @@ export type JWTContextType = {
     logout: () => void;
     login: (email: string, password: string) => Promise<void>;
     register: (email: string, password: string, username: string,) => Promise<void>;
-
-    // addEvent: ();
     resetPassword?: (email: string) => Promise<void>;
     updateProfile?: VoidFunction;
 };

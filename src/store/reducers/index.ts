@@ -7,7 +7,7 @@ import userInfo from "./userInfo";
 const reducers = combineReducers({
     users,
     events,
-    userInfo
+    userInfo,
 });
 
 export default reducers;

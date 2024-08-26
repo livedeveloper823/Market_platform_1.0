@@ -12,23 +12,24 @@ const HolderCard: React.FC<HolderCard> = ({ first, second, icon }) => {
     const navigate = useNavigate();
 
     return (
-        <div className="justify-between w-full rounded-lg border-gray-100 border shadow-md p-2 ">
+        <div className="justify-between w-full dark:bg-darkCardBg dark:text-white rounded-lg border-gray-100 border shadow-md p-2 ">
             <div className=" flex justify-between items-center font-semibold">
-                <h2 className="flex gap-2 text-2xl text-black font-semibold">{icon} {first || second}</h2>
+                <h2 className="flex gap-2 text-2xl text-textWhiteColor font-semibold">
+                    <p className="dark:text-blue-500">{icon}</p>
+                    {first || second}</h2>
             </div>
-            
+
             <div className="gap-4 border-b-2 mt-4 border-gray-100">
                 <div className="divide-y divide-gray-200">
                     {customers.map(({ username, laterTime, avatar, position, address, volume }, index) => (
                         <div
                             key={index}
                             className="flex  items-center py-2 gap-4 last:pb-1 cursor-pointer"
-
                         >
                             <div className="flex w-full items-center justify-between">
                                 <div className='flex w-full items-center  gap-3'>
                                     <Tooltip
-                                        className="bg-white border text-black z-50 rounded-lg"
+                                        className="bg-bgColor border text-black z-50 rounded-lg"
                                         content={<UserProperty avatar={avatar} username={username} address={address} position={position} volume={volume} />}
                                     >
                                         <button className="px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
@@ -44,10 +45,10 @@ const HolderCard: React.FC<HolderCard> = ({ first, second, icon }) => {
                                     </Tooltip>
                                     <div className="lg:flex w-full  justify-between gap-5">
                                         <Tooltip
-                                            className="bg-white border text-black z-50 rounded-lg"
+                                            className="bg-bgColor z-50 rounded-lg"
                                             content={<UserProperty avatar={avatar} username={username} address={address} position={position} volume={volume} />}
                                         >
-                                            <p onClick={() => navigate(`/profile?${index}`)} className="hover:underline">{username}</p>
+                                            <p onClick={() => navigate(`/profile?${index}`)} className="hover:underline text-textColor">{username}</p>
                                         </Tooltip>
                                         <p className={` ${first ? 'text-green-600' : second ? 'text-red-600' : 'text-blue-gray-500'}`}>
                                             $ {laterTime}

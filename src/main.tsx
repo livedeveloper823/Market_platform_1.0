@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider as ReduxProvider } from 'react-redux'
 import { store } from './store'
 import { MetaMaskProvider } from '@metamask/sdk-react'
+// import ThemeProvider from './contexts/ThemeContext'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -22,7 +23,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         }}
       >
         <BrowserRouter>
-          <App />
+          {/* <ThemeProvider> */}
+            <App />
+          {/* </ThemeProvider > */}
         </BrowserRouter>
       </MetaMaskProvider>
     </ReduxProvider>

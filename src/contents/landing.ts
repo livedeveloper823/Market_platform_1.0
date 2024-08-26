@@ -27,7 +27,7 @@ export const content = {
             link: 'leaderboard'
         }
     ],
-  
+
     menuBtns: [
         {
             text: "All",
@@ -74,29 +74,17 @@ export const content = {
                 value: "new"
             },
             {
+                text: "Breaking News",
+                value: "breakingNews"
+            },
+            {
+                text: "Mention Markets",
+                value: "mentionMarkets"
+            },
+            {
                 text: "US Election",
-                value: "uselection"
+                value: "usElection"
             },
-            {
-                text: "Kamala",
-                value: "kamala"
-            },
-            {
-                text: "Swing States",
-                value: "swingstates"
-            },
-            {
-                text: "Lebanon",
-                value: "lebanon"
-            },
-            {
-                text: "Crypto Prices",
-                value: "cryptoPrices"
-            },
-            {
-                text: "Movies",
-                value: "movies"
-            }
         ],
         new: [
             {
@@ -142,9 +130,25 @@ export const content = {
                 value: "fedRales"
             },
             {
-                text: "Middle East",
-                value: "middleEast"
-            }
+                text: " ",
+                value: " "
+            },
+            {
+                text: " ",
+                value: " "
+            },
+            {
+                text: " ",
+                value: " "
+            },
+            {
+                text: " ",
+                value: " "
+            },
+            {
+                text: " ",
+                value: " "
+            },
         ],
         olympics: [
 

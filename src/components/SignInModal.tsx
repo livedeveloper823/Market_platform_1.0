@@ -43,6 +43,7 @@ const SignInModal = ({ isOpen, onClose, title, connect }: ModalProps) => {
     return (
         <div
             onClick={onClose}
+
             style={{
                 position: "fixed",
                 top: 0,
@@ -57,9 +58,10 @@ const SignInModal = ({ isOpen, onClose, title, connect }: ModalProps) => {
             }}
         >
             <div onClick={handleModalClick}
+                className="bg-bgColor"
                 style={{
                     zIndex: 9999,
-                    background: "white",
+                    // background: "white",
                     width: 550,
                     margin: "auto",
                     padding: "2%",
@@ -68,8 +70,8 @@ const SignInModal = ({ isOpen, onClose, title, connect }: ModalProps) => {
                 }}
             >
                 <div className="flex flex-col gap-2 ">
-                    <p className="text-center text-2xl text-black font-bold">{title}</p>
-                    <div className="cursor-pointer flex flex-row   bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg w-[100%] h-[80px]" onClick={() => googleSignIn()}>
+                    <p className="text-center text-2xl text-textColor font-bold">{title}</p>
+                    <div className="cursor-pointer flex flex-row bg-gradient-to-r from-sky-500 to-indigo-500 rounded-lg w-[100%] h-[80px]" onClick={() => googleSignIn()}>
                         <div className="flex items-center justify-center ml-2 my-auto w-[50px] h-[50px] bg-white rounded-lg">
                             <GoogleIcon />
                         </div>
@@ -79,33 +81,33 @@ const SignInModal = ({ isOpen, onClose, title, connect }: ModalProps) => {
                         </div>
                     </div>
                     {title === "Sign Up" ?
-                        <div className="flex flex-col gap-3 justify-between">
+                        <div className=" flex flex-col gap-3 justify-between">
                             <div className="flex flex-row mt-2">
-                                <input type="email" name="email" className="py-2 pl-3 border border-gray-300 rounded-lg w-[70%] bg-white" autoComplete='email' placeholder="User Name" onChange={(e) => setUserData({ ...userData, username: e.target.value })} />
-                                <div className="ml-2 font-bold text-black bg-gray-200 w-[30%] rounded-lg text-1xl flex items-center justify-center cursor-pointer hover:bg-green-500" onClick={() => handleClick()}>Continue</div>
+                                <input type="text" name="text" className="py-2 pl-3 bg-bgColor border border-gray-300 rounded-lg w-[70%] hover:bg-selBtnHoverColor text-white" autoComplete='email' placeholder="User Name" onChange={(e) => setUserData({ ...userData, username: e.target.value })} />
+                                <div className="ml-2 font-bold w-[30%] rounded-lg  text-1xl flex items-center justify-center cursor-pointer  bg-gray-400 text-textColor" onClick={() => handleClick()}>Continue</div>
                             </div>
-                            <div className="flex gap-2 flex-row justify-between">
-                                <input type="text" className="w-full text-black pl-3 border border-gray-300 rounded-lg  py-2" placeholder="Email Name" onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
+                            <div className="flex  gap-2 flex-row justify-between ">
+                                <input type="email" name="email" className="w-full  bg-bgColor text-white hover:bg-selBtnHoverColo  pl-3 border rounded-lg py-2" placeholder="Email Name" onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
                             </div>
-                            <input type="password" className="pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Password" onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
+                            <input type="password" className="pl-3 border border-gray-300 rounded-lg bg-bgColor text-white  hover:bg-selBtnHoverColor py-2" placeholder="Password" onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
                         </div>
                         :
                         <div>
                             <div className="flex gap-2 flex-row justify-between">
-                                <input type="text" className="w-full pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Email Name" onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
-                                <div className="ml-2 font-bold text-black bg-gray-200 w-[30%] rounded-lg text-1xl flex items-center justify-center cursor-pointer hover:bg-green-500" onClick={() => handleClick()}>Continue</div>
+                                <input type="text" className="w-full pl-3 border bg-bgColor border-gray-300 rounded-lg hover:bg-selBtnHoverColor py-2" placeholder="Email Name" onChange={(e) => setUserData({ ...userData, email: e.target.value })} />
+                                <div className="ml-2 font-bold w-[30%] rounded-lg text-1xl flex items-center justify-center  cursor-pointer bg-gray-400 text-textColor" onClick={() => handleClick()}>Continue</div>
                             </div>
-                            <input type="password" className="w-full mt-2 pl-3 border border-gray-300 rounded-lg bg-white py-2" placeholder="Password" onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
+                            <input type="password" className="w-full mt-2 pl-3 border border-gray-300 rounded-lg bg-selBtnHoverColor py-2" placeholder="Password" onChange={(e) => setUserData({ ...userData, password: e.target.value })} />
                         </div>}
                     <hr />
-                    <div className="text-black flex gap-5 items-center w-full   px-10 cursor-pointer font-bold py-1 rounded-md shadow-md" onClick={connect}>
+                    <div className="text-textColor bg-cardBg flex gap-5 items-center w-full px-2 cursor-pointer font-bold py-1 rounded-md shadow-md" onClick={connect}>
                         <img src="https://img.freepik.com/premium-vector/metamask-logo-crypto-wallet-defi-web3-dapps-nfts-isolated-white-background_337410-1911.jpg?w=826" width={36} height={36} alt="" />Metamask
                     </div>
 
-                    <div className="text-black flex gap-5 items-center w-full   px-10 cursor-pointer font-bold py-3 rounded-md shadow-md">
-                        <img src="https://1000logos.net/wp-content/uploads/2022/05/WalletConnect-Logo-500x281.png" width={36} height={48} alt="" className="my-1" /> WalletConnect
-                    </div> 
-                    <p className="border-b-2   text-center text-1xl mt-5"> Privacy Terms</p>
+                    <div className="text-textColor bg-cardBg flex gap-5 items-center w-full px-2 cursor-pointer font-bold py-3 rounded-md shadow-md">
+                        <img src="https://1000logos.net/wp-content/uploads/2022/05/WalletConnect-Logo-500x281.png" width={36} height={48} alt="" className="my-1" /> Wallet Connect
+                    </div>
+                    <p className="border-b-2  text-textColor text-center text-1xl mt-5"> Privacy Terms</p>
                 </div>
             </div>
         </div>

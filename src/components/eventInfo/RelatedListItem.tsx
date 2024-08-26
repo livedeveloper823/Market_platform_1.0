@@ -17,21 +17,21 @@ const RelatedListItem: React.FC = () => {
                     {customers.map(({ eventName, avatar, yes, no }, index) => (
                         <div
                             key={index}
-                            className="flex px-1 hover:bg-gray-200 hover:rounded-md items-center w-full justify-between pb-3 pt-3 last:pb-0"
+                            className="flex hover:bg-selBtnHoverColor items-center w-full justify-between pb-3 pt-3 last:pb-0"
                         >
                             <div className="flex items-center gap-3 ">
                                 <img width={44} className="rounded-md" src={avatar} alt={eventName} />
                                 <div>
                                     {eventName && (
                                         <button
-                                            className="cursor-pointer"
+                                            className="cursor-pointer text-textWhiteColor"
                                             onClick={() => navigate('/event')}
                                             aria-label={`Navigate to event: ${eventName}`}
                                         >
                                             {eventName}
                                         </button>
                                     )}
-                                    <p className="text-sm font-semibold">$124,937 Bet</p>
+                                    <p className="text-sm font-semibold text-textColor ">$124,937 Bet</p>
                                 </div>
                             </div>
                             <div className="flex gap-4 text-md font-semibold">

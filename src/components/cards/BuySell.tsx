@@ -45,8 +45,8 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
     return (
         <div className="gap-4">
             <div className="flex justify-between  ">
-                <div className="flex items-center gap-2">
-                    <p className="test-lg">Outcome</p>
+                <div className="flex items-center text-textColor gap-2">
+                    <p className="test-lg ">Outcome</p>
                     <Tooltip
                         placement="bottom"
                         content={
@@ -65,12 +65,12 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
                                 </div>
                             </div>
                         }
-                        className="bg-white text-black z-10"
+                        className="bg-bgColor border z-10"
                     >
                         <Info size={10} className="cursor-pointer" />
                     </Tooltip>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center text-textColor gap-2">
                     <RefreshCcw onClick={() => { }} size={14} />
 
                     <div className="relative ">
@@ -79,14 +79,14 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
                         </Tooltip>
                         {popOver == true &&
 
-                            <div className="absolute border rounded-md p-3 items-center gap-4 bg-white z-30 " ref={ref} >
+                            <div className="absolute border rounded-md p-3 items-center gap-4 bg-bgColor z-30 " ref={ref} >
                                 <div>
                                     <p className="text-md font-medium py-2">Tania Andrew</p>
                                     <div className="flex border-none gap-2">
-                                        <Button value="market" className={`${orderType === 'market' ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-600'} px-3 py-1 rounded-md`} onClick={() => changeOrderType('market')} text="Market" />
-                                        <Button value="limit" className={`${orderType === 'limit' ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-600'} px-3 py-1 rounded-md`}
+                                        <Button value="market" className={`${orderType === 'market' ? 'bg-btnColor text-white' : 'bg-cardBg'}  px-3 py-1 rounded-md`} onClick={() => changeOrderType('market')} text="Market" />
+                                        <Button value="limit" className={`${orderType === 'limit' ? 'bg-btnColor text-white' : 'bg-cardBg'} px-3 py-1 rounded-md`}
                                             onClick={() => changeOrderType('limit')} text="Limit" />
-                                        <Button value="amm" className={`${orderType === 'amm' ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-600'} px-3 py-1 rounded-md`}
+                                        <Button value="amm" className={`${orderType === 'amm' ? 'bg-btnColor text-white' : 'bg-cardBg'} px-3 py-1 rounded-md`}
                                             onClick={() => changeOrderType('amm')} text="Amm" />
 
                                     </div>
@@ -94,7 +94,7 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
 
                                 <div>
                                     <p className="flex text-md gap-1 items-center font-medium py-2">Slippage tolerance
-                                        <Tooltip placement="bottom" className=" z-10" content={
+                                        <Tooltip placement="bottom" className="bg-bgColor indent-2 z-10" content={
                                             <div className="w-[12vw]">
                                                 Your transaction will revert if prices change unfavorably due to other orders.
                                                 This does not account for slippage caused by your own order.
@@ -105,14 +105,14 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
 
                                     </p>
                                     <div className="flex justify-between gap-2">
-                                        <Button value="zeroOne" className={`${tolerance === 'zeroOne' ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-600'} px-3 py-1 rounded-md`}
+                                        <Button value="zeroOne" className={`${tolerance === 'zeroOne' ? 'bg-btnColor text-white' : 'bg-cardBg'} px-3 py-1 rounded-md`}
                                             onClick={() => changeTolerence('zeroOne')} text="0.1%" />
-                                        <Button value="five" className={`${tolerance === 'five' ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-600'} px-3 py-1 rounded-md`}
+                                        <Button value="five" className={`${tolerance === 'five' ? 'bg-btnColor text-white' : 'bg-cardBg'} px-3 py-1 rounded-md`}
                                             onClick={() => changeTolerence('five')} text="0.5%" />
-                                        <Button value="one" className={`${tolerance === 'one' ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-600'} px-3 py-1 rounded-md`}
+                                        <Button value="one" className={`${tolerance === 'one' ? 'bg-btnColor text-white' : 'bg-cardBg'} px-3 py-1 rounded-md`}
                                             onClick={() => changeTolerence('one')} text="1%" />
-                                        <div className="flex gap-1 items-center border px-1 border-black rounded-md ">
-                                            <input className="text-balance w-6 " />
+                                        <div className="flex gap-1 items-center border  px-1 border-black dark:bg-darkCardBg rounded-md ">
+                                            <input className="px-1 text-balance dark:bg-darkCardBg w-6 " />
                                             <Percent size={16} />
                                         </div>
 
@@ -132,27 +132,27 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
                 activeTab === "buy" ? (
                     <div>
                         <div className=" flex flex-col py-1 gap-2 ">
-                            <p>Amount</p>
+                            <p className="text-textColor">Amount</p>
                             <div className="flex gap-2 items-center justify-between px-4 py-2 rounded-md border">
                                 <Tooltip className="z-50" content="-$10">
-                                    <Minus className="items-center w-8 h-6 text-black bg-gray-300 rounded-md" onClick={() => { setNumber(prevNumber => Math.max(prevNumber - 10, 0)) }} />
+                                    <Minus className="items-center w-8 h-6 bg-cardBg text-textColor  rounded-md" onClick={() => { setNumber(prevNumber => Math.max(prevNumber - 10, 0)) }} />
                                 </Tooltip>
-                                <input className="w-full text-center" type="text" value={`$${number}`} onChange={handleInputChange} />
+                                <input className="w-full text-center bg-bgColor text-textColor" type="text" value={`$${number}`} onChange={handleInputChange} />
                                 <Tooltip className="z-10" content="+$10">
-                                    <Plus className="items-center w-8 h-6 text-black bg-gray-300 rounded-md" onClick={() => { setNumber(prevNumber => Math.max(prevNumber + 10, 0)) }} />
+                                    <Plus className="items-center w-8 h-6 bg-cardBg text-textColor rounded-md" onClick={() => { setNumber(prevNumber => Math.max(prevNumber + 10, 0)) }} />
                                 </Tooltip>
                             </div>
-                            <Button onClick={() => { }} className="w-full text-center bg-blue-600  text-white px-4 py-2 text-lg font-semibold rounded-md" text="Log In" />
+                            <Button onClick={() => { }} className="w-full text-center bg-btnColor text-white px-4 py-2 text-lg font-semibold rounded-md" text="Log In" />
                         </div>
                         <div className="">
                             <div className="flex justify-between px-1">
-                                <p>Avg price</p>
-                                <p className="border-dotted border-b-2 text-indigo-600 ">{number} ¢</p>
+                                <p className="text-textColor">Avg price</p>
+                                <p className="border-dotted border-b-2  text-indigo-600 dark:text-darkBtn">{number} ¢</p>
                             </div>
 
                             <div className="flex justify-between px-1">
-                                <p>Est. amount received</p>
-                                <p className=" ">${number}</p>
+                                <p className="text-textColor">Est. amount received</p>
+                                <p className=" text-textColor">${number}</p>
                             </div>
 
                         </div>
@@ -160,14 +160,14 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
                 ) : (
                     <div>
                         <div className=" flex flex-col py-1 gap-2 ">
-                            <p>Shares</p>
+                        <p className="text-textColor">Shares</p>
                             <div className="flex gap-2 items-center justify-between px-4 py-2 rounded-md border">
                                 <Tooltip className="z-50" content="-$10">
-                                    <Minus className="items-center w-8 h-6 text-black bg-gray-300 rounded-md" onClick={() => { setNumber(prevNumber => Math.max(prevNumber - 10, 0)) }} />
+                                    <Minus className="items-center w-8 h-6 bg-cardBg text-textColor  rounded-md" onClick={() => { setNumber(prevNumber => Math.max(prevNumber - 10, 0)) }} />
                                 </Tooltip>
-                                <input className="w-full text-center" type="text" value={`$${number}`} onChange={handleInputChange} />
+                                <input className="w-full text-center bg-bgColor text-textColor" type="text" value={`$${number}`} onChange={handleInputChange} />
                                 <Tooltip className="z-10" content="+$10">
-                                    <Plus className="items-center w-8 h-6 text-black bg-gray-300 rounded-md" onClick={() => { setNumber(prevNumber => Math.max(prevNumber + 10, 0)) }} />
+                                    <Plus className="items-center w-8 h-6 bg-cardBg text-textColor  rounded-md" onClick={() => { setNumber(prevNumber => Math.max(prevNumber + 10, 0)) }} />
                                 </Tooltip>
                             </div>
                             <Button onClick={() => { }} className="w-full text-center bg-blue-600  text-white px-4 py-2 text-lg font-semibold rounded-md" text="Log In" />
@@ -175,17 +175,17 @@ const BuySell: React.FC<BuySellProps> = ({ activeTab }) => {
 
                         <div className=" ">
                             <div className="flex justify-between px-1">
-                                <p>Avg price</p>
+                            <p className="text-textColor">Avg price</p>
                                 <p className="border-dotted border-b-2 text-indigo-600 ">{number} ¢</p>
                             </div>
 
                             <div className="flex justify-between px-1">
-                                <p>Shares</p>
+                            <p className="text-textColor">Shares</p>
                                 <p className=" ">{number} ¢</p>
                             </div>
 
                             <div className="flex justify-between px-1">
-                                <p className="text-nowrap">Potential return</p>
+                                <p className="text-nowrap text-textColor">Potential return</p>
                                 <p className="text-green-500 ">
                                     ${number}({number / 100}%)</p>
                             </div>

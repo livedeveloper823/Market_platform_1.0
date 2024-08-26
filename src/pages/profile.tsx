@@ -2,19 +2,13 @@ import React from "react";
 import Button from "../components/Button/Button";
 import ProfileInfoList from "../components/profile/ProfileInfoList";
 import MyProperty from "../components/cards/MyProperty";
-import TopNavbar from "../components/TopNavbar";
+import Logo from "../components/layouts/Logo";
+import MobileFooter from "../components/layouts/MobileFooter";
+import TopNavbar from "../components/layouts/TopNavbar";
 import { useNavigate } from "react-router-dom";
-import {
-  Edit2,
-  Activity,
-  TrendingUp,
-  ChartNoAxesColumnIncreasing,
-  CheckCheck,
-} from "lucide-react";
+import { Edit2, TrendingUp, ChartNoAxesColumnIncreasing, Activity, CheckCheck, } from "lucide-react";
 import { getUsersData } from "../store/reducers/users";
 import { dispatch, useSelector } from "../store";
-import Logo from "../components/Logo";
-import MobileFooter from "../components/MobileFooter";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -43,7 +37,7 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="items-center">
               <Button
                 text="Edit Profile"

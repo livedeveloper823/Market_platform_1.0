@@ -41,7 +41,7 @@ const MainRoutes = {
             element: <Activity />
         },
         {
-            path: "/event",
+            path: "/event/:eventName",
             element: <EventInfo />
         },
         {
