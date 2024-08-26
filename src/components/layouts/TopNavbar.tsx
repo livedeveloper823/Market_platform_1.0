@@ -88,10 +88,11 @@ const TopNavbar = () => {
             <Logo color="text-fuchsia-900" />
           </div>
 
-          <div className="hover:bg-searchHover lg:visible lg:flex lg:w-full md:w-72 sm:hidden hidden px-4 py-2 gap-2 items-center border focus-within:border-white rounded-lg">
-            <SearchIcon className="text-textColor" size={16} />
-            <input type="text" className="w-full h-full bg-bgColor hover:bg-searchHover text-textColor" placeholder="Search markets" />
+          <div className="group hover:bg-searchHover lg:visible lg:flex lg:w-full md:w-72 sm:hidden hidden px-4 py-2 gap-2 items-center border focus-within:border-white rounded-lg">
+            {/* <SearchIcon className="text-textColor" size={16} /> */}
+            <input type="text" className="w-full h-full bg-bgColor group-hover:bg-searchHover text-textColor" placeholder="Search markets" />
           </div>
+
         </div>
 
         <div className="flex items-center">
@@ -119,7 +120,7 @@ const TopNavbar = () => {
             <Button text="Ranks" className="px-3 py-1 flex flex-col cursor-pointer rounded-md items-center text-gray-500  hover:text-selBtnHoverTextColor hover:bg-selBtnHoverColor" onClick={() => { navigate('/leaderboard') }} icon={<Trophy className="text-center" size={20} />} />
           </div>
 
-          <div className="w-full px-5">
+          <div className=" w-full px-5">
             {isLoggedIn ?
               <div className="flex items-center gap-2">
                 <div className="flex">
@@ -147,7 +148,7 @@ const TopNavbar = () => {
                   </Button>
 
                   {isMenuOpen && (
-                    <div className="bg-bgColor text-textColor absolute right-0 inline-block w-[220px] border px-2 items-center pt-4 pb-2 mt-1   rounded-md shadow-lg">
+                    <div className=" bg-bgColor text-textColor absolute right-0 inline-block w-[220px] border px-2 items-center pt-4 pb-2 mt-1   rounded-md shadow-lg">
                       <div>
                         {userrole === "admin" ? (
                           <>
@@ -191,7 +192,7 @@ const TopNavbar = () => {
                 </div >
               </div >
               :
-              <div className="flex gap-1 items-center">
+              <div className="  flex gap-1 items-center">
                 <Button onClick={handleInClick} className="w-full font-medium cursor-pointer rounded-md px-4 py-2 hover:bg-selBtnHoverColor items-centers flex tems-centertext-base text-btnColor text-nowrap" text="Log In" />
                 <Button onClick={handleUpClick} className="w-full font-medium cursor-pointer rounded-md px-4 py-2 hover:bg-btnHoverColor items-centers text-base bg-btnColor text-nowrap text-white" text="Sign Up" />
 
@@ -201,7 +202,7 @@ const TopNavbar = () => {
                   <Button icon={<AlignJustify />} className=" p-2 rounded-md items-center text-textColor mt-1 hover:bg-selBtnHoverColor" onClick={() => { }} />
 
                   {isMenuOpen && (
-                    <div className="bg-bgColor text-textColor absolute right-0 inline-block w-[180px] border px-2 items-center pt-4 pb-2 rounded-md shadow-lg">
+                    <div className=" bg-bgColor text-textColor absolute right-0 inline-block w-[180px] border px-2 items-center pt-4 pb-2 rounded-md shadow-lg">
 
                       <Button onClick={handleInClick} className="w-full font-medium cursor-pointer flex gap-3 text-base py-2 hover:bg-selBtnHoverColor rounded-md  px-2 items-center text-nowrap" text="Log In" />
                       <Button onClick={handleUpClick} className="w-full font-medium cursor-pointer flex gap-3 text-base py-2 hover:bg-selBtnHoverColor rounded-md  px-2 items-center text-nowrap" text="Sign Up" />

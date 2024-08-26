@@ -66,14 +66,20 @@ const Markets = () => {
         <div className="h-screen bg-bgColor overflow-hidden-scrollbar overflow-y-auto">
             <TopNavbar />
             <div className="dark:bg-darkBg mt-36">
-                <div style={{ scrollbarWidth: 'none' }} className=" my-4 md:flex-row flex flex-col md:overflow-y-scroll overflow-x-scroll md:gap-5 justify-center px-3">
-                    {/* <div style={{ scrollbarWidth: 'none' }} className="  grid-cols-4 md:grid-cols-3 px-6 overflow-x-scroll my-4 "> */}
-                    {/* <div className=" flex  overflow-x-scroll gap-3 px-4"> */}
-                    <TopEventCard text="2024 Election Forecast" btn_text="View" onClick={() => { }} className="w-full flex bg-gradient-to-r from-blue-600 to-blue-200" img_url=" https://polymarket.com/_next/image?url=%2Fimages%2Ffeatured%2Fopen-ai.png&w=256&q=75 " />
-                    <TopEventCard text="U.S. Recession in 2024?" btn_text="Bet now" onClick={() => { }} className="w-full flex bg-gradient-to-r from-indigo-600 to-indigo-300" img_url=" https://polymarket.com/_next/image?url=%2Fimages%2Ffeatured%2FDeposit.png&w=256&q=75 " />
-                    <TopEventCard text="2024 Presidential Election" btn_text="Bet now" onClick={() => { }} className="w-full flex bg-gradient-to-r from-red-600 to-red-400" img_url=" https://polymarket.com/_next/image?url=%2Fimages%2Ffeatured%2Fhurricanes.png&w=256&q=75
+                <div className="px-4">
+                    <div style={{ scrollbarWidth: 'none' }} className="overflow-x-auto ">
+                        {/* <div style={{ scrollbarWidth: 'none' }} className="gap-4 my-4  flex   overflow-x-auto justify-center px-4"> */}
+                        {/* <div className="justify-between flex "> */}
+                        <div className="flex space-x-4 lg:space-x-3 md:space-x-4">
+                            {/* <div style={{ scrollbarWidth: 'none' }} className="  grid-cols-4 md:grid-cols-3 px-6 overflow-x-scroll my-4 "> */}
+                            {/* <div className=" flex  overflow-x-scroll gap-3 px-4"> */}
+                            <TopEventCard text="2024 Election Forecast" btn_text="View" onClick={() => { }} className="flex-none lg:w-1/4 md:w-1/3 sm:w-full bg-gradient-to-r from-blue-600 to-blue-200" img_url=" https://polymarket.com/_next/image?url=%2Fimages%2Ffeatured%2Fopen-ai.png&w=256&q=75 " />
+                            <TopEventCard text="U.S. Recession in 2024?" btn_text="Bet now" onClick={() => { }} className="flex-none lg:w-1/4 md:w-1/3 sm:w-full bg-gradient-to-r from-indigo-600 to-indigo-300" img_url=" https://polymarket.com/_next/image?url=%2Fimages%2Ffeatured%2FDeposit.png&w=256&q=75 " />
+                            <TopEventCard text="2024 Presidential Election" btn_text="Bet now" onClick={() => { }} className="flex-none lg:w-1/4 md:w-1/3 sm:w-full bg-gradient-to-r from-red-600 to-red-400" img_url=" https://polymarket.com/_next/image?url=%2Fimages%2Ffeatured%2Fhurricanes.png&w=256&q=75
  " />
-                    <TopEventCard text="Trade Elections" btn_text="Sign Up" onClick={() => { }} className="w-full flex bg-gradient-to-r from-orange-500 to-orange-400" img_url="https://polymarket.com/_next/image?url=%2Fimages%2Ffeatured%2Fhottest-record.png&w=256&q=75 " />
+                            <TopEventCard text="Trade Elections" btn_text="Sign Up" onClick={() => { }} className="flex-none lg:w-1/4 md:w-1/3 sm:w-full bg-gradient-to-r from-orange-500 to-orange-400" img_url="https://polymarket.com/_next/image?url=%2Fimages%2Ffeatured%2Fhottest-record.png&w=256&q=75 " />
+                        </div>
+                    </div>
                 </div>
                 {/* SubBar */}
                 <div className="z-20 sticky top-[134px] pt-3 bg-bgColor text-textColor mb-4 drop-shadow-sm">
@@ -83,9 +89,9 @@ const Markets = () => {
                             <p className="sm:visible lg:hidden">Filters</p>
                         </div>
 
-                        <div className="lg:order-2 sm:order-1 order-1 flex w-full gap-2 px-4 py-1  items-center border hover:bg-searchHover border-gray-400 focus-within:border-white rounded-lg">
+                        <div className="group lg:order-2 sm:order-1 order-1 flex w-full gap-2 px-4 py-1  items-center border hover:bg-searchHover border-gray-400 focus-within:border-white rounded-lg">
                             <Search className=" " />
-                            <input type="text" className="hover:bg-searchHover w-full py-1 bg-bgColor " placeholder="Search by markets" onChange={(e) => setSearchKey(e.target.value)} />
+                            <input type="text" className="group-hover:bg-searchHover w-full py-1 bg-bgColor " placeholder="Search by markets" onChange={(e) => setSearchKey(e.target.value)} />
                         </div>
                         <div className="w-full  lg:order-3 lg:w-[16vw] sm:w-full sm:order-4 order-4 h-full  justify-between flex items-center rounded-lg">
                             <div className="relative w-full ">
