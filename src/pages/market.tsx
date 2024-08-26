@@ -76,7 +76,7 @@ const Markets = () => {
                     <TopEventCard text="Trade Elections" btn_text="Sign Up" onClick={() => { }} className="w-full flex bg-gradient-to-r from-orange-500 to-orange-400" img_url="https://polymarket.com/_next/image?url=%2Fimages%2Ffeatured%2Fhottest-record.png&w=256&q=75 " />
                 </div>
                 {/* SubBar */}
-                <div className="z-50 sticky top-[134px] pt-3 bg-bgColor text-textColor mb-4 drop-shadow-sm">
+                <div className="z-20 sticky top-[134px] pt-3 bg-bgColor text-textColor mb-4 drop-shadow-sm">
                     <div className="lg:flex sm:grid-cols-2 grid-cols-2 grid w-full lg:items-center px-3 gap-2">
                         <div className="hover:bg-searchHover lg:order-1 sm:order-3 order-3 p-2 border justify-center items-center gap-2 rounded-md flex cursor-pointer" onClick={() => { }}>
                             <ListFilter size={24} />
