@@ -89,7 +89,7 @@ const TopNavbar = () => {
           </div>
 
           <div className="group hover:bg-searchHover lg:visible lg:flex lg:w-full md:w-72 sm:hidden hidden px-4 py-2 gap-2 items-center border focus-within:border-white rounded-lg">
-            {/* <SearchIcon className="text-textColor" size={16} /> */}
+            <SearchIcon className="text-textColor" size={16} />
             <input type="text" className="w-full h-full bg-bgColor group-hover:bg-searchHover text-textColor" placeholder="Search markets" />
           </div>
 
